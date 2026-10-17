@@ -2,130 +2,445 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crafted Resistance</title>
+    <title>Crafted Resistance — Survive. Build. Resist.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crafted Resistance is an in-development survival crafting game where players gather resources, build structures, explore a procedurally generated world, and overcome environmental challenges.">
+    <meta name="theme-color" content="#0b0d11">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Crafted Resistance — Survive. Build. Resist.">
+    <meta property="og:description" content="An in-development survival crafting game. Explore, gather, build, survive and expand.">
+    <meta property="og:image" content="screenshot.png">
 
-        body {
-            background: #0f1014;
-            color: white;
-        }
-
-        .hero {
-            height: 100vh;
-            background: linear-gradient(
-                rgba(0,0,0,.45),
-                rgba(0,0,0,.75)
-            ),
-            url("screenshot.png");
-
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .content {
-            max-width: 800px;
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 5rem;
-            text-shadow: 0 0 20px black;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            text-decoration: none;
-            background: #00bfff;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        .btn:hover {
-            background: #0099cc;
-            transform: translateY(-2px);
-        }
-
-        .section {
-            padding: 80px 40px;
-            text-align: center;
-        }
-
-        .section h2 {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-        }
-
-        .card {
-            max-width: 900px;
-            margin: auto;
-            background: #1b1d24;
-            padding: 30px;
-            border-radius: 15px;
-        }
-    </style>
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="hero">
-    <div class="content">
-        <h1>CRAFTED RESISTANCE</h1>
-        <p>Survive. Build. Resist.</p>
+<a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="buttons">
-            <a href="#" class="btn">Play Now</a>
-            <a href="#" class="btn">Download</a>
-            <a href="#" class="btn">Discord</a>
+<!-- ============ icon sprite ============ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-pick" viewBox="0 0 24 24"><path d="M4 20 14 10"/><path d="M9 4c3.5-1.5 7.5 1 9 4.5l-3 2-4.5-4.5z"/></symbol>
+    <symbol id="i-anvil" viewBox="0 0 24 24"><path d="M3 9h10l4 4h4"/><path d="M6 13v3h9v-3"/><path d="M4 19h13"/></symbol>
+    <symbol id="i-brick" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="8" height="6" rx="1"/><rect x="13" y="14" width="8" height="6" rx="1"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.7c0 4.7-7 9.3-7 9.3z"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5"/><path d="M20 15v5h-5"/><path d="M20 9V4h-5"/><path d="M4 15v5h5"/><path d="m9 9 6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></symbol>
+    <symbol id="i-discord" viewBox="0 0 24 24"><path d="M8.5 6.5A15 15 0 0 1 12 6.2c1.2 0 2.4.1 3.5.3"/><path d="M8.5 6.5C6.2 7.4 4.6 9 4 10.8 3 13.7 3 16.6 3 16.6s2 2 4 2.6c1 .3 2 .4 2 .4l.6-1.6"/><path d="M15.5 6.5c2.3.9 3.9 2.5 4.5 4.3 1 2.9 1 5.8 1 5.8s-2 2-4 2.6c-1 .3-2 .4-2 .4l-.6-1.6"/><circle cx="9.5" cy="13" r="1.6"/><circle cx="14.5" cy="13" r="1.6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+</svg>
+
+<!-- ============ header ============ -->
+<header class="nav" id="nav">
+    <div class="container nav__inner">
+        <a class="brand" href="#top" aria-label="Crafted Resistance — home">
+            <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+            <span class="brand__text">Crafted<em>Resistance</em></span>
+        </a>
+
+        <nav class="nav__links" id="nav-links" aria-label="Primary">
+            <a href="#world">World</a>
+            <a href="#pillars">Pillars</a>
+            <a href="#progression">Progression</a>
+            <a href="#updates">Updates</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#faq">FAQ</a>
+            <a class="btn btn--ghost btn--sm nav__cta" href="downloads.html">Download</a>
+        </nav>
+
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="nav__scrim" id="nav-scrim" hidden></div>
+
+<main id="main">
+
+    <!-- ============ hero ============ -->
+    <section class="hero" id="top">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
+
+        <div class="container hero__inner">
+            <p class="eyebrow" data-reveal>
+                <span class="eyebrow__dot" aria-hidden="true"></span>
+                In active development
+            </p>
+
+            <h1 class="hero__title" data-reveal>
+                <span class="hero__title-line">Crafted</span>
+                <span class="hero__title-line hero__title-line--accent">Resistance</span>
+            </h1>
+
+            <p class="hero__tagline" data-reveal>Survive. Build. Resist.</p>
+
+            <p class="hero__lead" data-reveal>
+                Crafted Resistance is an in-development survival crafting game where players gather
+                resources, build structures, explore a procedurally generated world, and overcome
+                environmental challenges. Every update adds new mechanics, blocks, items, and new
+                ways to play.
+            </p>
+
+            <div class="hero__actions" data-reveal>
+                <a class="btn btn--primary" href="craftedresistance://play" data-link="play">
+                    <svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg>
+                    Play now
+                </a>
+                <a class="btn btn--ghost" href="downloads.html">
+                    <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                    Download
+                </a>
+                <a class="btn btn--ghost" href="#community" data-link="discord">
+                    <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
+                    Discord
+                </a>
+            </div>
+
+            <p class="hero__note" data-reveal>
+                Play now launches the desktop build &mdash; requires Crafted Resistance to be installed.
+            </p>
         </div>
-    </div>
-</div>
 
-<div class="section">
-    <div class="card">
-        <h2>Welcome</h2>
-        <p>
-            Crafted Resistance is a survival experience where players
-            explore, build, gather resources, and fight against the
-            challenges of a changing world.
-        </p>
-    </div>
-</div>
+        <a class="hero__scroll" href="#world" aria-label="Scroll to content">
+            <span></span>
+        </a>
+    </section>
 
-<div class="section">
-    <div class="card">
-        <h2>Latest Update</h2>
-        <p>
-            Add your patch notes here.
-        </p>
+    <!-- ============ pillar ticker ============ -->
+    <div class="ticker" data-ticker aria-label="The foundations of survival">
+        <div class="ticker__track" data-ticker-track></div>
     </div>
-</div>
 
+    <!-- ============ the world ============ -->
+    <section class="section" id="world">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>The world</p>
+                <h2 class="sec-title" data-reveal>Explore. Gather. Build.</h2>
+                <p class="sec-sub" data-reveal>
+                    The world of Crafted Resistance is constantly evolving. Explore new areas,
+                    collect resources, build your own base, and prepare for future updates that will
+                    expand gameplay, progression, exploration, and survival mechanics. Every journey
+                    begins with limited resources and endless possibilities.
+                </p>
+            </header>
+
+            <figure class="frame frame--wide" data-reveal>
+                <div class="frame__bar">
+                    <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span class="frame__path">crafted-resistance · development build</span>
+                </div>
+                <div class="frame__shot">
+                    <img src="screenshot.png" width="1535" height="707" alt="Early development footage from Crafted Resistance showing a tall stone structure built on an open plain.">
+                </div>
+                <figcaption>Early footage from the current development build. Nothing here is final.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- ============ pillars ============ -->
+    <section class="section section--alt" id="pillars">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Core pillars</p>
+                <h2 class="sec-title" data-reveal>The Foundations of Survival</h2>
+            </header>
+
+            <div class="grid grid--3">
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
+                    <h3>Explore</h3>
+                    <p>Discover diverse environments, hidden resources, and unique terrain while expanding your knowledge of the world.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-pick"></use></svg></span>
+                    <h3>Gather</h3>
+                    <p>Collect materials, harvest resources, and secure supplies needed to survive and progress.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-anvil"></use></svg></span>
+                    <h3>Craft</h3>
+                    <p>Transform raw materials into tools, equipment, and structures that help you thrive.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-brick"></use></svg></span>
+                    <h3>Build</h3>
+                    <p>Design and construct anything from simple shelters to massive fortified bases.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+                    <h3>Survive</h3>
+                    <p>Manage resources, prepare for danger, and adapt to increasingly difficult conditions.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
+                    <h3>Expand</h3>
+                    <p>Grow your settlement, improve your infrastructure, and push further into the unknown.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ progression ============ -->
+    <section class="section" id="progression">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Progression</p>
+                <h2 class="sec-title" data-reveal>Grow From Survivor to Master Builder</h2>
+                <p class="sec-sub" data-reveal>
+                    Progress through better tools, stronger materials, larger structures, and more
+                    advanced crafting options. Each milestone unlocks new opportunities and challenges.
+                </p>
+            </header>
+
+            <div class="rail" data-reveal aria-hidden="true">
+                <span class="rail__end">Survivor</span>
+                <span class="rail__line"><i></i></span>
+                <span class="rail__end rail__end--target">Master Builder</span>
+            </div>
+
+            <div class="grid grid--4">
+                <article class="pillar-sm" data-reveal>
+                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-pick"></use></svg></span>
+                    <h3>Better tools</h3>
+                </article>
+                <article class="pillar-sm" data-reveal>
+                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-anvil"></use></svg></span>
+                    <h3>Stronger materials</h3>
+                </article>
+                <article class="pillar-sm" data-reveal>
+                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-brick"></use></svg></span>
+                    <h3>Larger structures</h3>
+                </article>
+                <article class="pillar-sm" data-reveal>
+                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
+                    <h3>Advanced crafting</h3>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ development updates ============ -->
+    <section class="section section--alt" id="updates">
+        <div class="container container--narrow">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Development log</p>
+                <h2 class="sec-title" data-reveal>Development Updates</h2>
+            </header>
+
+            <article class="status" data-reveal>
+                <h3>Current Development Status</h3>
+                <ul class="bullets">
+                    <li>Official website launched.</li>
+                    <li>Core gameplay systems under development.</li>
+                    <li>World generation improvements planned.</li>
+                    <li>Building and crafting features in progress.</li>
+                    <li>Additional content and mechanics coming soon.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============ roadmap ============ -->
+    <section class="section" id="roadmap">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>What's next</p>
+                <h2 class="sec-title" data-reveal>Roadmap</h2>
+            </header>
+
+            <div class="grid grid--3">
+                <article class="lane" data-reveal>
+                    <header class="lane__head">
+                        <span class="chip chip--next">Next</span>
+                    </header>
+                    <ul>
+                        <li>Expanded building features</li>
+                        <li>Improved world generation</li>
+                        <li>New resources and crafting recipes</li>
+                    </ul>
+                </article>
+
+                <article class="lane" data-reveal>
+                    <header class="lane__head">
+                        <span class="chip chip--active">In progress</span>
+                    </header>
+                    <ul>
+                        <li>Survival systems</li>
+                        <li>Exploration mechanics</li>
+                        <li>Structure improvements</li>
+                    </ul>
+                </article>
+
+                <article class="lane" data-reveal>
+                    <header class="lane__head">
+                        <span class="chip">Planned</span>
+                    </header>
+                    <ul>
+                        <li>Additional biomes</li>
+                        <li>Multiplayer support</li>
+                        <li>Advanced progression systems</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ community ============ -->
+    <section class="section section--alt" id="community">
+        <div class="container">
+            <div class="cta" data-reveal>
+                <div class="cta__glow" aria-hidden="true"></div>
+                <div class="cta__content">
+                    <p class="kicker">Community</p>
+                    <h2>Join the Journey</h2>
+                    <p>
+                        Crafted Resistance is being shaped through development, experimentation, and
+                        community feedback. Follow progress, suggest ideas, and be among the first
+                        players to experience future builds.
+                    </p>
+                    <div class="cta__actions">
+                        <a class="btn btn--primary" href="craftedresistance://play" data-link="play">
+                            <svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg>
+                            Play now
+                        </a>
+                        <a class="btn btn--ghost" href="#discord" data-link="discord">
+                            <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
+                            Join the community
+                        </a>
+                    </div>
+                    <p class="cta__meta">Join the community and help shape the future of Crafted Resistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ faq ============ -->
+    <section class="section" id="faq">
+        <div class="container container--narrow">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Questions</p>
+                <h2 class="sec-title" data-reveal>Before you drop in.</h2>
+            </header>
+
+            <div class="faq" data-faq>
+                <details class="faq__item" data-reveal>
+                    <summary>What is Crafted Resistance?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Crafted Resistance is a survival crafting game focused on exploration, gathering resources, building structures, and gradually expanding your capabilities.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Is the game finished?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>No. The game is currently under active development and new features are being added regularly.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Will multiplayer be available?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Multiplayer is planned for future development updates.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Can I provide feedback?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Yes. Community feedback plays an important role in shaping future updates.</p></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ closing CTA ============ -->
+    <section class="section closing" id="start">
+        <div class="container container--narrow closing__inner" data-reveal>
+            <h2 class="closing__title">The Adventure Is Just Beginning</h2>
+            <p>
+                Crafted Resistance is currently under active development. Follow progress, stay
+                updated on new features, and be ready when the next build arrives.
+            </p>
+            <div class="closing__actions">
+                <a class="btn btn--primary btn--lg" href="craftedresistance://play" data-link="play">
+                    <svg class="icon" aria-hidden="true"><use href="#i-play"></use></svg>
+                    Play now
+                </a>
+                <a class="btn btn--ghost btn--lg" href="downloads.html">
+                    <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                    Download
+                </a>
+                <a class="btn btn--ghost btn--lg" href="#community" data-link="discord">
+                    <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
+                    Join the community
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============ footer ============ -->
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__brand">
+            <a class="brand" href="#top" aria-label="Crafted Resistance — back to top">
+                <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+                <span class="brand__text">Crafted<em>Resistance</em></span>
+            </a>
+            <p>Survive. Build. Resist. Crafted Resistance is an evolving survival crafting experience focused on exploration, creativity, and progression.</p>
+        </div>
+
+        <nav class="footer__col" aria-label="Game">
+            <h2>Game</h2>
+            <ul>
+                <li><a href="#world">The world</a></li>
+                <li><a href="#pillars">Core pillars</a></li>
+                <li><a href="#progression">Progression</a></li>
+                <li><a href="#updates">Development updates</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="craftedresistance://play" data-link="play">Play now</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Community">
+            <h2>Community</h2>
+            <ul>
+                <li><a href="#discord" data-link="discord">Discord</a></li>
+                <li><a href="#feedback" data-link="feedback">Send feedback</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="#privacy" data-link="privacy">Privacy</a></li>
+                <li><a href="#terms" data-link="terms">Terms</a></li>
+                <li><a href="#press" data-link="press">Press kit</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container footer__bar">
+        <p>&copy; <span data-year>2026</span> Crafted Resistance. All rights reserved.</p>
+        <p class="footer__build">In active development · <a href="#top">Back to top</a></p>
+    </div>
+</footer>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+</button>
+
+<script src="script.js" defer></script>
 </body>
 </html>

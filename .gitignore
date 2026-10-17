@@ -1,0 +1,11 @@
+# Local helper scripts - never commit these
+deploy.bat
+
+# Game builds
+*.exe
+*.zip
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Downloads — Crafted Resistance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download Crafted Resistance for Windows and macOS.">
+    <meta name="theme-color" content="#0b0d11">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Downloads — Crafted Resistance">
+    <meta property="og:description" content="Download Crafted Resistance for Windows and macOS.">
+    <meta property="og:image" content="screenshot.png">
+
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-downloads">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ icon sprite ============ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-windows" viewBox="0 0 24 24"><path d="M3 5.6 10.6 4.6v6.9H3z"/><path d="M12.2 4.3 21 3v8.5h-8.8z"/><path d="M3 13.2h7.6v6.9L3 19z"/><path d="M12.2 13.2H21V21l-8.8-1.3z"/></symbol>
+    <symbol id="i-mac" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="1.5"/><path d="M12 16.5V20"/><path d="M8.5 20h7"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-discord" viewBox="0 0 24 24"><path d="M8.5 6.5A15 15 0 0 1 12 6.2c1.2 0 2.4.1 3.5.3"/><path d="M8.5 6.5C6.2 7.4 4.6 9 4 10.8 3 13.7 3 16.6 3 16.6s2 2 4 2.6c1 .3 2 .4 2 .4l.6-1.6"/><path d="M15.5 6.5c2.3.9 3.9 2.5 4.5 4.3 1 2.9 1 5.8 1 5.8s-2 2-4 2.6c-1 .3-2 .4-2 .4l-.6-1.6"/><circle cx="9.5" cy="13" r="1.6"/><circle cx="14.5" cy="13" r="1.6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+</svg>
+
+<!-- ============ header ============ -->
+<header class="nav is-stuck" id="nav">
+    <div class="container nav__inner">
+        <a class="brand" href="index.html" aria-label="Crafted Resistance — home">
+            <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+            <span class="brand__text">Crafted<em>Resistance</em></span>
+        </a>
+
+        <nav class="nav__links" id="nav-links" aria-label="Primary">
+            <a href="index.html#world">World</a>
+            <a href="index.html#pillars">Pillars</a>
+            <a href="index.html#progression">Progression</a>
+            <a href="index.html#updates">Updates</a>
+            <a href="index.html#roadmap">Roadmap</a>
+            <a href="index.html#faq">FAQ</a>
+            <a class="btn btn--primary btn--sm nav__cta" href="downloads.html" aria-current="page">Download</a>
+        </nav>
+
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="nav__scrim" id="nav-scrim" hidden></div>
+
+<main id="main">
+
+    <!-- ============ hero ============ -->
+    <section class="dl-hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
+
+        <div class="container dl-hero__inner">
+            <p class="eyebrow" data-reveal>
+                <span class="eyebrow__dot" aria-hidden="true"></span>
+                In active development
+            </p>
+            <h1 class="dl-hero__title" data-reveal>Downloads</h1>
+            <p class="hero__lead" data-reveal>
+                Crafted Resistance is under active development and no public build has been
+                released yet. Builds are shared with the community first &mdash; join the Discord
+                to get early access and report what you find.
+            </p>
+            <div class="dl-hero__actions" data-reveal>
+                <a class="btn btn--primary" href="index.html#community" data-link="discord">
+                    <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
+                    Get access via Discord
+                </a>
+                <a class="btn btn--ghost" href="index.html#updates">
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                    Read development updates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ version select ============ -->
+    <section class="section" id="versions">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Step 1</p>
+                <h2 class="sec-title" data-reveal>Choose a version</h2>
+                <p class="sec-sub" data-reveal>
+                    Older builds are kept for testing and bug reports. Pick the version you want,
+                    then choose your platform below.
+                </p>
+            </header>
+
+            <!-- Populated from CONFIG.versions in script.js -->
+            <div class="versions" id="version-list" data-reveal></div>
+
+            <p class="notice" id="dl-notice" hidden data-reveal>
+                <strong>No public downloads yet.</strong>
+                Versions and buttons stay disabled until entries are added to
+                <code>CONFIG.versions</code> in <code>script.js</code>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ platforms ============ -->
+    <section class="section section--alt" id="platforms">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Step 2</p>
+                <h2 class="sec-title" data-reveal>Pick your platform</h2>
+                <p class="sec-sub" data-reveal id="platform-for-version">
+                    Downloads below are for the selected version.
+                </p>
+            </header>
+
+            <div class="grid grid--2">
+
+                <!-- ---------- Windows ---------- -->
+                <article class="dl-card" data-reveal data-platform="windows">
+                    <header class="dl-card__head">
+                        <span class="dl-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-windows"></use></svg></span>
+                        <div>
+                            <h3>Windows</h3>
+                            <p>Windows 10 or 11</p>
+                        </div>
+                    </header>
+
+                    <ul class="dl-card__meta">
+                        <li class="dl-row" data-row="version" hidden><span>Version</span><strong data-field="version"></strong></li>
+                        <li class="dl-row" data-row="channel" hidden><span>Channel</span><strong data-field="channel"></strong></li>
+                        <li class="dl-row" data-row="size" hidden><span>Size</span><strong data-field="size"></strong></li>
+                    </ul>
+
+                    <div class="dl-card__actions">
+                        <a class="btn btn--primary dl-btn" href="#versions" data-download="windows-x64">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>64-bit (x64)</span>
+                        </a>
+                        <a class="btn btn--ghost dl-btn" href="#versions" data-download="windows-arm64">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>ARM64</span>
+                        </a>
+                        <a class="btn btn--ghost dl-btn" href="#versions" data-download="windows-x64-portable">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>x64 Portable Build</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---------- macOS ---------- -->
+                <article class="dl-card" data-reveal data-platform="macos">
+                    <header class="dl-card__head">
+                        <span class="dl-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-mac"></use></svg></span>
+                        <div>
+                            <h3>macOS</h3>
+                            <p>macOS 11 Big Sur or newer</p>
+                        </div>
+                    </header>
+
+                    <ul class="dl-card__meta">
+                        <li class="dl-row" data-row="version" hidden><span>Version</span><strong data-field="version"></strong></li>
+                        <li class="dl-row" data-row="channel" hidden><span>Channel</span><strong data-field="channel"></strong></li>
+                        <li class="dl-row" data-row="size" hidden><span>Size</span><strong data-field="size"></strong></li>
+                    </ul>
+
+                    <div class="dl-card__actions">
+                        <a class="btn btn--primary dl-btn" href="#versions" data-download="macos-arm64">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>Apple Silicon</span>
+                        </a>
+                        <a class="btn btn--ghost dl-btn" href="#versions" data-download="macos-intel">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>Intel</span>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="dl-fineprint" data-reveal>
+                Already installed? Open the game straight from your browser with the
+                <code>craftedresistance://play</code> launch button on the homepage.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ requirements ============ -->
+    <section class="section section--alt" id="requirements">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Before you install</p>
+                <h2 class="sec-title" data-reveal>System requirements</h2>
+            </header>
+
+            <div class="grid grid--2">
+                <article class="specs" data-reveal>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-windows"></use></svg> Windows</h3>
+                    <dl>
+                        <div><dt>OS</dt><dd>Windows 10 (64-bit) or Windows 11</dd></div>
+                        <div><dt>Processor</dt><dd>Quad-core 2.5 GHz or faster</dd></div>
+                        <div><dt>Memory</dt><dd>8 GB RAM</dd></div>
+                        <div><dt>Graphics</dt><dd>GPU with 2 GB VRAM, DirectX 11</dd></div>
+                        <div><dt>Storage</dt><dd>2 GB free space</dd></div>
+                        <div><dt>Notes</dt><dd>May prompt for a graphics driver update on first launch</dd></div>
+                    </dl>
+                </article>
+
+                <article class="specs" data-reveal>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-mac"></use></svg> macOS</h3>
+                    <dl>
+                        <div><dt>OS</dt><dd>macOS 11 (Big Sur) or newer</dd></div>
+                        <div><dt>Processor</dt><dd>Apple Silicon, or Intel Core i5 / AMD equivalent</dd></div>
+                        <div><dt>Memory</dt><dd>8 GB RAM</dd></div>
+                        <div><dt>Graphics</dt><dd>Metal-capable GPU</dd></div>
+                        <div><dt>Storage</dt><dd>2 GB free space</dd></div>
+                        <div><dt>Notes</dt><dd>First launch requires approving the app in Privacy &amp; Security</dd></div>
+                    </dl>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ install notes ============ -->
+    <section class="section" id="install">
+        <div class="container container--narrow">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Getting started</p>
+                <h2 class="sec-title" data-reveal>First launch</h2>
+            </header>
+
+            <div class="faq" data-faq>
+                <details class="faq__item" data-reveal>
+                    <summary>The download button does nothing. Why?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Two common causes. Either the build URL has not been published yet, or your browser is blocking the custom protocol. On desktop browsers you can usually allow a site to open an external app from the icon in the address bar.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Why is there no Linux build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Not yet. Linux support is not on the roadmap at this stage. Join the Discord and it will be announced there first if it changes.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Can I play without installing?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Not at the moment. The <code>craftedresistance://</code> launch button assumes the desktop build is already installed on your machine.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>The game crashes or looks wrong on my machine.<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Report it in the Discord with your OS version and GPU. Early builds are rough, and bug reports from testers are the fastest way to get things fixed before release.</p></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="section closing">
+        <div class="container container--narrow closing__inner" data-reveal>
+            <h2 class="closing__title">The Adventure Is Just Beginning</h2>
+            <p>
+                Crafted Resistance is currently under active development. Follow progress, stay
+                updated on new features, and be ready when the next build arrives.
+            </p>
+            <div class="closing__actions">
+                <a class="btn btn--primary btn--lg" href="index.html#community" data-link="discord">
+                    <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
+                    Join the community
+                </a>
+                <a class="btn btn--ghost btn--lg" href="index.html">
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                    Back to home
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============ footer ============ -->
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__brand">
+            <a class="brand" href="index.html" aria-label="Crafted Resistance — home">
+                <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+                <span class="brand__text">Crafted<em>Resistance</em></span>
+            </a>
+            <p>Survive. Build. Resist. Crafted Resistance is an evolving survival crafting experience focused on exploration, creativity, and progression.</p>
+        </div>
+
+        <nav class="footer__col" aria-label="Game">
+            <h2>Game</h2>
+            <ul>
+                <li><a href="index.html#world">The world</a></li>
+                <li><a href="index.html#pillars">Core pillars</a></li>
+                <li><a href="index.html#progression">Progression</a></li>
+                <li><a href="index.html#updates">Development updates</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Community">
+            <h2>Community</h2>
+            <ul>
+                <li><a href="#discord" data-link="discord">Discord</a></li>
+                <li><a href="#feedback" data-link="feedback">Send feedback</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="#privacy" data-link="privacy">Privacy</a></li>
+                <li><a href="#terms" data-link="terms">Terms</a></li>
+                <li><a href="#press" data-link="press">Press kit</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container footer__bar">
+        <p>&copy; <span data-year>2026</span> Crafted Resistance. All rights reserved.</p>
+        <p class="footer__build">In active development · <a href="index.html">Back to home</a></p>
+    </div>
+</footer>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#i-chevron"></use></svg>
+</button>
+
+<script src="script.js" defer></script>
+</body>
+</html>
