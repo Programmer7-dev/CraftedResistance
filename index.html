@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crafted Resistance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0f1014;
+            color: white;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(
+                rgba(0,0,0,.45),
+                rgba(0,0,0,.75)
+            ),
+            url("screenshot.png");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 5rem;
+            text-shadow: 0 0 20px black;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            background: #00bfff;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #0099cc;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .card {
+            max-width: 900px;
+            margin: auto;
+            background: #1b1d24;
+            padding: 30px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="content">
+        <h1>CRAFTED RESISTANCE</h1>
+        <p>Survive. Build. Resist.</p>
+
+        <div class="buttons">
+            <a href="#" class="btn">Play Now</a>
+            <a href="#" class="btn">Download</a>
+            <a href="#" class="btn">Discord</a>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>Welcome</h2>
+        <p>
+            Crafted Resistance is a survival experience where players
+            explore, build, gather resources, and fight against the
+            challenges of a changing world.
+        </p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>Latest Update</h2>
+        <p>
+            Add your patch notes here.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
