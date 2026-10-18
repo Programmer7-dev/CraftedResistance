@@ -1200,6 +1200,13 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 
 .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+/* three platform cards side by side; stack earlier since each has 3 buttons */
+.dl-platforms { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 1100px) {
+    .dl-platforms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* ---------- platform detection ---------- */
 .dl-detected {
     display: inline-flex;
@@ -1280,6 +1287,19 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     border-color: transparent;
     color: #16110c;
     box-shadow: 0 10px 26px -12px rgba(255, 140, 70, .8);
+}
+
+/* only the first live button in a card is primary — two ember buttons side by
+   side reads as "which one do I click?" */
+.dl-card__actions .dl-btn.is-primary ~ .dl-btn.is-primary {
+    background: rgba(255, 255, 255, .05);
+    border-color: var(--line-strong);
+    color: var(--text);
+    box-shadow: none;
+}
+
+.dl-card__actions .dl-btn.is-primary ~ .dl-btn.is-primary:hover {
+    background: rgba(255, 255, 255, .1);
 }
 
 .version__pick-label,
@@ -1455,6 +1475,10 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 
 .dl-card__actions[hidden] { display: none; }
 
+/* when a card shows the "no build yet" note, push it to the card's bottom too */
+.dl-card__actions + .dl-card__none,
+.dl-card__none:not([hidden]) ~ .dl-card__actions { margin-top: auto; }
+
 .dl-card {
     display: flex;
     flex-direction: column;
@@ -1531,14 +1555,41 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     color: var(--text);
 }
 
+.dl-card__none {
+    margin-top: auto;
+    padding: .9rem 1rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: 10px;
+    text-align: center;
+    color: #798394;
+    font-size: .88rem;
+}
+
+.dl-card__none[hidden] { display: none; }
+
 .dl-card__actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
     gap: .6rem;
     margin-top: auto;
 }
 
-.dl-btn { flex: 1 1 12rem; }
+.dl-btn {
+    width: 100%;
+    flex-direction: column;
+    gap: .15rem;
+    padding-block: .7rem;
+}
+
+/* download size under the button label */
+.dl-btn__size {
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    opacity: .7;
+}
+
+.dl-btn__size[hidden] { display: none; }
 
 .dl-fineprint {
     margin-top: 2rem;
@@ -1626,7 +1677,8 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     .grid--3,
     .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-    .grid--2 { grid-template-columns: minmax(0, 1fr); }
+    .grid--2,
+    .dl-platforms { grid-template-columns: minmax(0, 1fr); }
 
     .footer__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
@@ -1676,14 +1728,15 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 @media (max-width: 700px) {
     .grid--3,
     .grid--4,
-    .grid--2 { grid-template-columns: minmax(0, 1fr); }
+    .grid--2,
+    .dl-platforms { grid-template-columns: minmax(0, 1fr); }
 
     .hero { min-height: auto; padding-bottom: 4.5rem; }
 
     .hero__actions .btn,
     .dl-hero__actions .btn { flex: 1 1 100%; }
 
-    .dl-card__actions { flex-direction: column; }
+    .dl-card__actions { grid-template-columns: minmax(0, 1fr); }
 
     .dl-btn { flex: none; }
 

@@ -13,18 +13,51 @@ const CONFIG = {
     play: 'craftedresistance://play',
     discord: 'https://discord.gg/Ker5hu4NG',
 
-    /* --- downloads --- */
+    /* --- downloads ---
+       VERSIONS render newest-first as a selectable list. Each version carries
+       its own build files, so older releases stay downloadable.
+
+       Valid build keys - any you omit or leave blank simply doesn't render:
+         windows-x64           windows-x64-portable
+         macos-arm64           macos-x64
+         linux-x64             linux-arm64          linux-portable
+
+       Values are hrefs: a bare filename works if it sits next to index.html,
+       or use a full https:// URL to a release host. */
     versions: [
         {
             id: '1.0-beta',
             channel: 'Beta',
             notes: 'First public beta release of Crafted Resistance.',
+
+            /* Download size per build key, shown under the button.
+               Keep the keys in sync with builds below. */
+            sizes: {
+                'windows-x64': '162 MB',
+                'windows-x64-portable': '161 MB',
+                'macos-arm64': '161 MB',
+                'macos-x64': '160 MB',
+                'linux-portable': '165 MB',
+            },
+
             builds: {
+                // Windows — installer, then portable
                 'windows-x64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/1.0-beta/CraftedResistance-1.0-beta.exe',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Windows1.0-beta/CraftedResistance-1.0.0.exe',
 
                 'windows-x64-portable':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/1.0-beta/CraftedResistance-portable-1.0-beta.zip',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Windows1.0-beta/CraftedResistance.zip',
+
+                // macOS — disk image, then portable app bundle
+                'macos-arm64':
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/1.0-beta/CraftedResistance-1.0.0.dmg',
+
+                'macos-x64':
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/1.0-beta/CraftedResistance.app.zip',
+
+                // Linux — AppImage bundle
+                'linux-portable':
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Linux1.0-beta/CraftedResistance.AppDir.zip',
             },
         },
     ],
@@ -46,7 +79,7 @@ const PILLARS = ['Explore', 'Gather', 'Craft', 'Build', 'Survive', 'Expand'];
 const PLATFORMS = {
     windows: { label: 'Windows', supported: true },
     mac: { label: 'macOS', supported: true },
-    linux: { label: 'Linux', supported: false },
+    linux: { label: 'Linux', supported: true },
     android: { label: 'Android', supported: false },
     ios: { label: 'iOS / iPadOS', supported: false },
     unknown: { label: 'your device', supported: false },
@@ -266,7 +299,16 @@ onScroll();
    Marks the detected platform's card, shows an "unavailable on this device"
    notice for unsupported platforms, and hides the launch button where the
    craftedresistance:// protocol cannot exist. */
-const SUPPORTED = ['windows', 'mac'];
+const SUPPORTED = ['windows', 'mac', 'linux'];
+
+/* Maps a detected platform to the CONFIG.versions build-key prefix.
+   'mac' -> 'macos-', 'linux' -> 'linux-' — keep these in sync with the
+   build keys you actually publish. */
+const BUILD_PREFIX = {
+    windows: 'windows-',
+    mac: 'macos-',
+    linux: 'linux-',
+};
 
 // cards: badge the visitor's own platform
 document.querySelectorAll('[data-matches]').forEach((card) => {
@@ -286,16 +328,14 @@ const missingGrid = document.getElementById('dl-missing-grid');
 
 // platforms we have no build for, in the order people ask about them
 const NO_BUILD = [
-    { id: 'linux', icon: 'i-linux', name: 'Linux' },
     { id: 'android', icon: 'i-android', name: 'Android' },
     { id: 'ios', icon: 'i-apple', name: 'iOS / iPadOS' },
 ];
 
 const NO_BUILD_COPY = {
-    linux: 'There is no Linux build of Crafted Resistance. Windows and macOS are the only supported platforms right now.',
     android: 'Crafted Resistance is a desktop game and there is no Android build.',
     ios: 'Crafted Resistance is a desktop game and there is no iOS or iPadOS build.',
-    unknown: 'We could not detect your platform. If you are on Windows or macOS, pick your platform below.',
+    unknown: 'We could not detect your platform. Pick your platform below to get the right build.',
 };
 
 if (detected || unsupported) {
@@ -446,7 +486,8 @@ if (versionList) {
 
             // hide platform buttons that have no file in the selected version
             card.querySelectorAll('[data-download]').forEach((btn) => {
-                const url = builds[btn.dataset.download];
+                const key = btn.dataset.download;
+                const url = builds[key];
                 const action = btn.closest('.dl-card__actions');
 
                 // the visitor's own platform is never hidden - if they are on it,
@@ -456,9 +497,16 @@ if (versionList) {
 
                 btn.classList.toggle('is-primary', !!url || isYourDevice);
 
+                const sizeEl = btn.querySelector('[data-size]');
+                if (sizeEl) {
+                    const size = (selected.sizes || {})[key];
+                    sizeEl.textContent = size || '';
+                    sizeEl.hidden = !size;
+                }
+
                 if (url) {
                     btn.href = url;
-                    btn.title = url;
+                    btn.title = `${url.split('/').pop()} — ${(selected.sizes || {})[key] || 'size unknown'}`;
                     btn.removeAttribute('aria-disabled');
                     btn.onclick = null;
 
@@ -481,6 +529,13 @@ if (versionList) {
 
                 if (action) action.hidden = !card.querySelector('[data-download]:not([hidden])');
             });
+
+            // a card with nothing to offer should say so, not just look empty
+            const none = card.querySelector('[data-none]');
+            if (none) {
+                const actions = card.querySelector('.dl-card__actions');
+                none.hidden = !actions || !actions.hidden;
+            }
         });
 
         if (platformHint && selected) {
@@ -493,8 +548,10 @@ if (versionList) {
                 : `Version ${selected.id} has no published files yet.`;
 
             if (mineLabel) {
-                const hasMine = Object.values(selected.builds || {})
-                    .some((v, i) => v && Object.keys(selected.builds)[i].startsWith(platformId === 'mac' ? 'macos' : 'windows'));
+                const prefix = BUILD_PREFIX[platformId];
+                const hasMine = prefix
+                    && Object.entries(selected.builds || {}).some(([key, val]) => val && key.startsWith(prefix));
+
                 text += hasMine
                     ? ` Your ${mineLabel} build is highlighted.`
                     : ` There is no ${mineLabel} file for this version.`;

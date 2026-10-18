@@ -131,7 +131,7 @@
                 <p class="kicker" data-reveal>Step 2</p>
                 <h2 class="sec-title" data-reveal>Pick your platform</h2>
                 <p class="sec-sub" data-reveal id="platform-for-version">
-                    Downloads below are for the selected version.
+                    Windows, macOS and Linux are supported. Downloads below are for the selected version.
                 </p>
             </header>
 
@@ -141,7 +141,7 @@
                 <span id="dl-unsupported-text"></span>
             </p>
 
-            <div class="grid grid--2">
+            <div class="grid grid--3 dl-platforms">
 
                 <!-- ---------- Windows ---------- -->
                 <article class="dl-card" data-reveal data-platform="windows" data-matches="windows">
@@ -159,18 +159,45 @@
                         <li class="dl-row" data-row="size" hidden><span>Size</span><strong data-field="size"></strong></li>
                     </ul>
 
+                    <p class="dl-card__none" data-none hidden>No <span data-platform-name>Windows</span> build for this version yet.</p>
+
                     <div class="dl-card__actions">
                         <a class="btn btn--primary dl-btn" href="#versions" data-download="windows-x64">
                             <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-                            <span data-label>64-bit (x64)</span>
-                        </a>
-                        <a class="btn btn--ghost dl-btn" href="#versions" data-download="windows-arm64">
-                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-                            <span data-label>ARM64</span>
+                            <span data-label>Installer (.exe)</span>
+                            <span class="dl-btn__size" data-size hidden></span>
                         </a>
                         <a class="btn btn--ghost dl-btn" href="#versions" data-download="windows-x64-portable">
                             <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-                            <span data-label>x64 Portable Build</span>
+                            <span data-label>Portable (.zip)</span>
+                            <span class="dl-btn__size" data-size hidden></span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ---------- Linux / Ubuntu ---------- -->
+                <article class="dl-card" data-reveal data-platform="linux" data-matches="linux">
+                    <header class="dl-card__head">
+                        <span class="dl-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-linux"></use></svg></span>
+                        <div>
+                            <h3>Linux <span class="dl-card__yours" hidden>Your device</span></h3>
+                            <p>Ubuntu 22.04 LTS or newer</p>
+                        </div>
+                    </header>
+
+                    <ul class="dl-card__meta">
+                        <li class="dl-row" data-row="version" hidden><span>Version</span><strong data-field="version"></strong></li>
+                        <li class="dl-row" data-row="channel" hidden><span>Channel</span><strong data-field="channel"></strong></li>
+                        <li class="dl-row" data-row="size" hidden><span>Size</span><strong data-field="size"></strong></li>
+                    </ul>
+
+                    <p class="dl-card__none" data-none hidden>No <span data-platform-name>Linux</span> build for this version yet.</p>
+
+                    <div class="dl-card__actions">
+                        <a class="btn btn--primary dl-btn" href="#versions" data-download="linux-portable">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>AppImage Bundle (.zip)</span>
+                            <span class="dl-btn__size" data-size hidden></span>
                         </a>
                     </div>
                 </article>
@@ -191,14 +218,18 @@
                         <li class="dl-row" data-row="size" hidden><span>Size</span><strong data-field="size"></strong></li>
                     </ul>
 
+                    <p class="dl-card__none" data-none hidden>No <span data-platform-name>macOS</span> build for this version yet.</p>
+
                     <div class="dl-card__actions">
                         <a class="btn btn--primary dl-btn" href="#versions" data-download="macos-arm64">
                             <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-                            <span data-label>Apple Silicon</span>
+                            <span data-label>Disk Image (.dmg)</span>
+                            <span class="dl-btn__size" data-size hidden></span>
                         </a>
-                        <a class="btn btn--ghost dl-btn" href="#versions" data-download="macos-intel">
+                        <a class="btn btn--ghost dl-btn" href="#versions" data-download="macos-x64">
                             <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
-                            <span data-label>Intel</span>
+                            <span data-label>Portable (.app.zip)</span>
+                            <span class="dl-btn__size" data-size hidden></span>
                         </a>
                     </div>
                 </article>
@@ -253,6 +284,18 @@
                         <div><dt>Notes</dt><dd>First launch requires approving the app in Privacy &amp; Security</dd></div>
                     </dl>
                 </article>
+
+                <article class="specs" data-reveal>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-linux"></use></svg> Linux</h3>
+                    <dl>
+                        <div><dt>OS</dt><dd>Ubuntu 22.04 LTS or newer</dd></div>
+                        <div><dt>Processor</dt><dd>Quad-core 2.5 GHz or faster (x86_64)</dd></div>
+                        <div><dt>Memory</dt><dd>8 GB RAM</dd></div>
+                        <div><dt>Graphics</dt><dd>Vulkan 1.2 or OpenGL 4.5 capable GPU</dd></div>
+                        <div><dt>Storage</dt><dd>2 GB free space</dd></div>
+                        <div><dt>Notes</dt><dd>Install <code>libgl1</code>, <code>libglx-mesa0</code> and <code>vulkan drivers</code> if the window fails to open</dd></div>
+                    </dl>
+                </article>
             </div>
         </div>
     </section>
@@ -271,8 +314,16 @@
                     <div class="faq__answer"><p>Two common causes. Either the build URL has not been published yet, or your browser is blocking the custom protocol. On desktop browsers you can usually allow a site to open an external app from the icon in the address bar.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
-                    <summary>Why is there no Linux build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Not yet. Linux support is not on the roadmap at this stage. Join the Discord and it will be announced there first if it changes.</p></div>
+                    <summary>How do I run the Linux build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Unzip the <strong>AppDir</strong> bundle wherever you want it, open the folder, and double-click the executable &mdash; or run it from a terminal with <code>./CraftedResistance</code>. Mark it executable first with <code>chmod +x CraftedResistance</code>. Nothing gets installed system-wide, so delete the folder to uninstall.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Does the game work on other Linux distros?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Ubuntu is the tested target. The AppImage-style bundle is self-contained and is the better bet on Debian, Fedora and Arch, but expect to install graphics drivers yourself. Report anything that breaks in the Discord.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Is there an Android or iOS build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>No. Crafted Resistance is a desktop game and there is no Android or iOS build. Join the Discord and it will be announced there first if that changes.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Can I play without installing?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
