@@ -1129,7 +1129,105 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     background: var(--surface-2);
 }
 
-/* ---------- 14. Downloads page ---------- */
+/* ---------- 14. Legal pages ---------- */
+.page-legal { background: var(--bg); }
+
+.legal {
+    padding: calc(var(--nav-h) + 3.5rem) 0 5rem;
+    background: linear-gradient(180deg, var(--bg-alt), var(--bg) 60%);
+}
+
+.legal__title {
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    margin-bottom: .6rem;
+}
+
+.legal__updated {
+    font-size: .82rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #798394;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.legal__lede {
+    margin: 2rem 0;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid var(--ember);
+    border-radius: var(--r);
+    background: rgba(255, 122, 61, .06);
+    font-size: 1.05rem;
+    color: #cfd6e2;
+}
+
+.legal h2 {
+    font-size: 1.15rem;
+    margin: 2.5rem 0 .8rem;
+    color: var(--text);
+}
+
+.legal p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.legal ul {
+    display: grid;
+    gap: .55rem;
+    margin: 0 0 1.4rem;
+}
+
+.legal li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--muted);
+    font-size: .96rem;
+}
+
+.legal li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: .62em;
+    width: 6px;
+    height: 6px;
+    background: var(--ember);
+    opacity: .7;
+    transform: rotate(45deg);
+}
+
+.legal a:not(.btn) {
+    color: var(--ember-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 179, 71, .35);
+}
+
+.legal a:not(.btn):hover { color: var(--ember); }
+
+.legal code {
+    padding: .1rem .35rem;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .05);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .88em;
+    color: #cbd3e0;
+}
+
+.legal__foot {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: .92rem;
+}
+
+/* ---------- 15. Downloads page ---------- */
 .page-downloads { background: var(--bg); }
 
 .dl-hero {
@@ -1640,7 +1738,7 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     color: #c3cad6;
 }
 
-/* ---------- 15. Motion + responsive ---------- */
+/* ---------- 16. Motion + responsive ---------- */
 @media (max-height: 820px) and (min-width: 861px) {
     .hero { padding-bottom: 3.5rem; }
 

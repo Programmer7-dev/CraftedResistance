@@ -64,8 +64,6 @@ const CONFIG = {
 
     // --- still needed (leave blank until you have one) ---
     feedback: '',
-    privacy: '',
-    terms: '',
     press: '',
 };
 
