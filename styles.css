@@ -418,14 +418,17 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     to   { transform: scale(1.11) translate3d(0, -1.2%, 0); }
 }
 
-.hero::after {
+/* Dark scrim over the screenshot. Without it the sky is bright enough to
+   swallow body text - any hero using .hero__bg needs this. */
+.hero::after,
+.dl-hero::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
     background:
         radial-gradient(90% 70% at 50% 0%, rgba(255, 122, 61, .16), transparent 65%),
-        linear-gradient(rgba(11, 13, 17, .82), rgba(11, 13, 17, .92) 55%, var(--bg) 100%);
+        linear-gradient(rgba(11, 13, 17, .88), rgba(11, 13, 17, .95) 55%, var(--bg) 100%);
 }
 
 .hero__grid {
@@ -1139,6 +1142,7 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 }
 
 .dl-hero__inner {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
