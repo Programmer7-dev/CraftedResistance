@@ -39,6 +39,40 @@ const CONFIG = {
 /* the six pillars from "The Foundations of Survival" */
 const PILLARS = ['Explore', 'Gather', 'Craft', 'Build', 'Survive', 'Expand'];
 
+/* ---------- platform detection ----------
+   Best-effort. The UA string is a lie on desktop (Chrome on Windows still says
+   "Windows NT") and browsers narrow it over time, so treat this as a hint for
+   UI copy only - never as a gate on a real download link. */
+const PLATFORMS = {
+    windows: { label: 'Windows', supported: true },
+    mac: { label: 'macOS', supported: true },
+    linux: { label: 'Linux', supported: false },
+    android: { label: 'Android', supported: false },
+    ios: { label: 'iOS / iPadOS', supported: false },
+    unknown: { label: 'your device', supported: false },
+};
+
+function detectPlatform() {
+    const ua = navigator.userAgent || '';
+    const uaData = navigator.userAgentData;
+    // Chromium's structured platform hint, where available
+    const hint = (uaData && uaData.platform) || navigator.platform || '';
+    // iPadOS 13+ deliberately masquerades as "MacIntel" with touch support
+    const touchPoints = navigator.maxTouchPoints || 0;
+
+    if (/android/i.test(hint) || /android/i.test(ua)) return 'android';
+    if (/iphone|ipad|ipod/i.test(ua)) return 'ios';
+    if (/mac/i.test(hint)) return touchPoints > 1 ? 'ios' : 'mac';
+    if (/win/i.test(hint) || /windows/i.test(ua)) return 'windows';
+    if (/macintosh|mac os/i.test(ua)) return 'mac';
+    if (/linux|x11|cros/i.test(hint) || /linux|x11/i.test(ua)) return 'linux';
+
+    return 'unknown';
+}
+
+const platformId = detectPlatform();
+const platform = PLATFORMS[platformId];
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- outbound links ---------- */
@@ -228,6 +262,96 @@ if (track) {
 /* initial paint state (after updateSpy is defined) */
 onScroll();
 
+/* ---------- platform-aware chrome ----------
+   Marks the detected platform's card, shows an "unavailable on this device"
+   notice for unsupported platforms, and hides the launch button where the
+   craftedresistance:// protocol cannot exist. */
+const SUPPORTED = ['windows', 'mac'];
+
+// cards: badge the visitor's own platform
+document.querySelectorAll('[data-matches]').forEach((card) => {
+    if (card.dataset.matches === platformId) {
+        card.classList.add('is-your-device');
+        const badge = card.querySelector('.dl-card__yours');
+        if (badge) badge.hidden = false;
+    }
+});
+
+// downloads page banner + unavailable notice
+const detected = document.getElementById('dl-detected');
+const unsupported = document.getElementById('dl-unsupported');
+const unsupportedText = document.getElementById('dl-unsupported-text');
+const missing = document.getElementById('dl-missing');
+const missingGrid = document.getElementById('dl-missing-grid');
+
+// platforms we have no build for, in the order people ask about them
+const NO_BUILD = [
+    { id: 'linux', icon: 'i-linux', name: 'Linux' },
+    { id: 'android', icon: 'i-android', name: 'Android' },
+    { id: 'ios', icon: 'i-apple', name: 'iOS / iPadOS' },
+];
+
+const NO_BUILD_COPY = {
+    linux: 'There is no Linux build of Crafted Resistance. Windows and macOS are the only supported platforms right now.',
+    android: 'Crafted Resistance is a desktop game and there is no Android build.',
+    ios: 'Crafted Resistance is a desktop game and there is no iOS or iPadOS build.',
+    unknown: 'We could not detect your platform. If you are on Windows or macOS, pick your platform below.',
+};
+
+if (detected || unsupported) {
+    const isSupported = SUPPORTED.includes(platformId);
+
+    if (detected) {
+        const text = detected.querySelector('.dl-detected__text');
+        if (text) {
+            text.textContent = isSupported
+                ? `You're on ${platform.label} — your build is below.`
+                : `You're on ${platform.label}.`;
+        }
+        detected.classList.toggle('dl-detected--warn', !isSupported);
+        detected.hidden = false;
+    }
+
+    if (unsupported && !isSupported) {
+        if (unsupportedText) unsupportedText.textContent = NO_BUILD_COPY[platformId] || NO_BUILD_COPY.unknown;
+        unsupported.hidden = false;
+
+        if (missing && missingGrid) {
+            const list = platformId === 'unknown'
+                ? NO_BUILD
+                : [{ ...NO_BUILD.find((p) => p.id === platformId) }, ...NO_BUILD.filter((p) => p.id !== platformId)];
+
+            missingGrid.innerHTML = list.filter(Boolean).map((p) => `
+                <article class="dl-missing-card">
+                    <span class="dl-missing-card__icon">
+                        <svg class="icon" aria-hidden="true"><use href="#${p.icon}"></use></svg>
+                    </span>
+                    <h3>${p.name}</h3>
+                    <p class="dl-missing-card__status">
+                        <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+                        Not available
+                    </p>
+                </article>`).join('');
+
+            missing.hidden = false;
+        }
+    }
+}
+
+// the launch protocol only exists on desktop
+document.querySelectorAll('[data-link="play"]').forEach((btn) => {
+    if (SUPPORTED.includes(platformId)) return;
+
+    btn.classList.add('is-unavailable');
+    btn.setAttribute('aria-disabled', 'true');
+    btn.title = `The game launcher is not available on ${platform.label}`;
+    btn.addEventListener('click', (e) => e.preventDefault());
+
+    const label = btn.querySelector('[data-label]') || btn;
+    const text = (label.textContent || '').trim();
+    if (text === 'Play now') label.textContent = 'Play now (desktop only)';
+});
+
 /* ---------- downloads page ----------
    Step 1: render CONFIG.versions as a selectable list.
    Step 2: platform buttons read the selected version's build files.
@@ -305,6 +429,7 @@ if (versionList) {
 
         document.querySelectorAll('.dl-card').forEach((card) => {
             const builds = (selected && selected.builds) || {};
+            const isYourDevice = card.dataset.matches === platformId;
 
             ['version', 'channel'].forEach((field) => {
                 const row = card.querySelector(`[data-row="${field}"]`);
@@ -324,11 +449,12 @@ if (versionList) {
                 const url = builds[btn.dataset.download];
                 const action = btn.closest('.dl-card__actions');
 
-                btn.hidden = !url;
+                // the visitor's own platform is never hidden - if they are on it,
+                // showing an empty card is worse than showing nothing useful
+                btn.hidden = !url && !isYourDevice;
                 if (url) anyFile = true;
 
-                btn.classList.remove('is-unavailable');
-                btn.classList.toggle('is-primary', !!url);
+                btn.classList.toggle('is-primary', !!url || isYourDevice);
 
                 if (url) {
                     btn.href = url;
@@ -343,9 +469,14 @@ if (versionList) {
                         btn.removeAttribute('target');
                         btn.removeAttribute('rel');
                     }
-                } else {
-                    // keep the slot visible only if this platform has files at all
-                    btn.hidden = true;
+                } else if (isYourDevice) {
+                    // their platform, but this version has no file for it
+                    btn.classList.add('is-unavailable');
+                    btn.setAttribute('aria-disabled', 'true');
+                    btn.title = `No file for this platform in version ${(selected && selected.id) || ''}`;
+                    btn.onclick = (e) => e.preventDefault();
+                    btn.removeAttribute('target');
+                    btn.removeAttribute('rel');
                 }
 
                 if (action) action.hidden = !card.querySelector('[data-download]:not([hidden])');
@@ -354,9 +485,22 @@ if (versionList) {
 
         if (platformHint && selected) {
             const count = Object.keys((selected && selected.builds) || {}).filter((k) => selected.builds[k]).length;
-            platformHint.textContent = count
+            const mine = SUPPORTED.includes(platformId);
+            const mineLabel = mine ? platform.label : null;
+
+            let text = count
                 ? `Downloads below are for version ${selected.id} — ${count} file(s) available.`
                 : `Version ${selected.id} has no published files yet.`;
+
+            if (mineLabel) {
+                const hasMine = Object.values(selected.builds || {})
+                    .some((v, i) => v && Object.keys(selected.builds)[i].startsWith(platformId === 'mac' ? 'macos' : 'windows'));
+                text += hasMine
+                    ? ` Your ${mineLabel} build is highlighted.`
+                    : ` There is no ${mineLabel} file for this version.`;
+            }
+
+            platformHint.textContent = text;
         }
 
         if (dlNotice) dlNotice.hidden = anyFile;

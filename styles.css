@@ -1196,6 +1196,163 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 
 .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+/* ---------- platform detection ---------- */
+.dl-detected {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    max-width: 42ch;
+    padding: .55rem 1.1rem;
+    border: 1px solid rgba(79, 209, 197, .3);
+    border-radius: 100px;
+    background: rgba(79, 209, 197, .08);
+    color: #d7dde7;
+    font-size: .92rem;
+}
+
+.dl-detected[hidden] { display: none; }
+
+.dl-detected::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--ice);
+    box-shadow: 0 0 0 3px rgba(79, 209, 197, .18);
+}
+
+.dl-detected--warn {
+    border-color: rgba(255, 179, 71, .35);
+    background: rgba(255, 179, 71, .09);
+}
+
+.dl-detected--warn::before {
+    background: var(--ember-soft);
+    box-shadow: 0 0 0 3px rgba(255, 179, 71, .18);
+}
+
+.notice--warn {
+    margin-bottom: 1.6rem;
+    border-color: rgba(255, 179, 71, .32);
+    background: rgba(255, 179, 71, .07);
+}
+
+.notice--warn[hidden] { display: none; }
+
+/* the visitor's own platform card */
+.dl-card.is-your-device {
+    border-color: rgba(79, 209, 197, .45);
+    background: linear-gradient(180deg, rgba(79, 209, 197, .07), transparent 60%), var(--surface);
+}
+
+.dl-card.is-your-device .dl-card__icon {
+    border-color: rgba(79, 209, 197, .4);
+    background: rgba(79, 209, 197, .12);
+    color: var(--ice);
+}
+
+.dl-card__yours {
+    display: inline-block;
+    margin-left: .5rem;
+    padding: .12rem .55rem;
+    border-radius: 100px;
+    background: rgba(79, 209, 197, .16);
+    color: var(--ice);
+    font-family: var(--font-display);
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.dl-card__yours[hidden] { display: none; }
+
+/* JS adds .is-primary to whichever platform button is the live download */
+.dl-btn.is-primary {
+    background: var(--grad-ember);
+    border-color: transparent;
+    color: #16110c;
+    box-shadow: 0 10px 26px -12px rgba(255, 140, 70, .8);
+}
+
+.version__pick-label,
+.version__channel,
+.version__latest,
+.dl-detected__icon,
+.dl-detected__text { display: inline; }
+
+/* a build key exists in this version but not for this platform */
+.dl-btn.is-unavailable {
+    background: rgba(255, 255, 255, .03);
+    border-style: dashed;
+    border-color: var(--line-strong);
+    color: #8b95a7;
+    box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: auto;
+}
+
+.dl-btn.is-unavailable:hover { transform: none; }
+
+/* platforms with no build at all */
+.dl-missing {
+    margin-top: 1.6rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--line-strong);
+}
+
+.dl-missing[hidden] { display: none; }
+
+.dl-missing-card {
+    padding: 1.4rem 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: rgba(255, 255, 255, .015);
+    text-align: center;
+}
+
+.dl-missing-card__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto .8rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, .03);
+    color: #6e788c;
+    font-size: 1.15rem;
+}
+
+.dl-missing-card h3 { font-size: 1rem; margin-bottom: .4rem; }
+
+.dl-missing-card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #798394;
+}
+
+.dl-missing-card__status .icon {
+    width: 1em;
+    height: 1em;
+    stroke-dasharray: 4;
+    opacity: .75;
+}
+
+.dl-missing__note {
+    margin-top: 1.2rem;
+    text-align: center;
+    color: #798394;
+    font-size: .88rem;
+}
+
 /* ---------- version select ---------- */
 .versions {
     display: grid;
@@ -1533,6 +1690,8 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     }
 
     .version__pick { width: 100%; }
+
+    .dl-detected { border-radius: var(--r); }
 
     .specs dl > div { grid-template-columns: minmax(0, 1fr); gap: .2rem; }
 
