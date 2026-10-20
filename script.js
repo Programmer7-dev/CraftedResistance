@@ -55,10 +55,10 @@ const CONFIG = {
 
                 // macOS — disk image, then portable app bundle
                 'macos-arm64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-arm64.dmg',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-macos-arm64.dmg',
 
                 'macos-x64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-x64.dmg',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-macos-x64.dmg',
 
                 // Linux — AppImage bundle
                 'linux-portable':
