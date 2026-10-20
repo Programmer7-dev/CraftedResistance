@@ -39,7 +39,7 @@ const CONFIG = {
                Keep the keys in sync with builds below. */
             sizes: {
                 'windows-x64': '159 MB',
-                'windows-x64-portable': '176 MB',
+                'windows-x64-portable': '161 MB',
                 'macos-arm64': '163 MB',
                 'macos-x64': '163 MB',
                 'linux-portable': '165 MB',
@@ -54,8 +54,14 @@ const CONFIG = {
                     'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-portable.zip',
 
                 // macOS — disk image, then portable app bundle
-                'macos-arm64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0-macos-arm64.dmg',
+                //
+                // The Apple Silicon build is not published yet: the runner that makes
+                // it has been queued for hours. A button that 404s is worse than no
+                // button, so it is left out until the file is there. Put it back
+                // when the release has CraftedResistance-1.0-macos-arm64.dmg:
+                //
+                // 'macos-arm64':
+                //     'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0-macos-arm64.dmg',
 
                 'macos-x64':
                     'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0-macos-x64.dmg',
