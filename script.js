@@ -23,7 +23,12 @@ const CONFIG = {
          linux-x64             linux-arm64          linux-portable
 
        Values are hrefs: a bare filename works if it sits next to index.html,
-       or use a full https:// URL to a release host. */
+       or use a full https:// URL to a release host.
+
+       All of these point at the Pre-release_v1.0 release of the public
+       repository. The installers ask where they should put themselves - for
+       this user only, or for everybody on the machine - so nothing needs an
+       administrator password unless it is wanted. */
     versions: [
         {
             id: '1.0-beta',
@@ -33,31 +38,31 @@ const CONFIG = {
             /* Download size per build key, shown under the button.
                Keep the keys in sync with builds below. */
             sizes: {
-                'windows-x64': '162 MB',
-                'windows-x64-portable': '161 MB',
-                'macos-arm64': '161 MB',
-                'macos-x64': '160 MB',
+                'windows-x64': '159 MB',
+                'windows-x64-portable': '165 MB',
+                'macos-arm64': '163 MB',
+                'macos-x64': '163 MB',
                 'linux-portable': '165 MB',
             },
 
             builds: {
                 // Windows — installer, then portable
                 'windows-x64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Windows1.0-beta/CraftedResistance-1.0.0.exe',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0.exe',
 
                 'windows-x64-portable':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Windows1.0-beta/CraftedResistance.zip',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-portable.zip',
 
                 // macOS — disk image, then portable app bundle
                 'macos-arm64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/1.0-beta/CraftedResistance-1.0.0.dmg',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-arm64.dmg',
 
                 'macos-x64':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/1.0-beta/CraftedResistance.app.zip',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-x64.dmg',
 
                 // Linux — AppImage bundle
                 'linux-portable':
-                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Linux1.0-beta/CraftedResistance.AppDir.zip',
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.0-x86_64.AppImage',
             },
         },
     ],
