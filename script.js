@@ -31,8 +31,8 @@ const CONFIG = {
        administrator password unless it is wanted. */
     versions: [
         {
-            id: 'beta',
-            channel: 'Beta',
+            id: 'beta 1.0',
+            channel: '',
             notes: 'The current beta of Crafted Resistance.',
 
             /* Download size per build key, shown under the button.
