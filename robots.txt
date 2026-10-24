@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://programmer7-dev.github.io/CraftedResistance/sitemap.xml
