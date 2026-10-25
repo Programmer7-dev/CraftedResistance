@@ -21,6 +21,7 @@ const CONFIG = {
          windows-x64           windows-x64-portable
          macos-arm64           macos-x64
          linux-x64             linux-arm64          linux-portable
+         android-apk
 
        Values are hrefs: a bare filename works if it sits next to index.html,
        or use a full https:// URL to a release host.
@@ -43,6 +44,7 @@ const CONFIG = {
                 'macos-arm64': '163 MB',
                 'macos-x64': '165 MB',
                 'linux-portable': '165 MB',
+                'android-apk': '127 MB',
             },
 
             builds: {
@@ -67,6 +69,10 @@ const CONFIG = {
                 // Linux — AppImage bundle
                 'linux-portable':
                     'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0-x86_64.AppImage',
+
+                // Android — signed release APK (Android 13 / API 33 and newer)
+                'android-apk':
+                    'https://github.com/Programmer7-dev/CraftedResistance/releases/download/Pre-release_v1.0/CraftedResistance-1.0.apk',
             },
         },
     ],
@@ -87,7 +93,7 @@ const PLATFORMS = {
     windows: { label: 'Windows', supported: true },
     mac: { label: 'macOS', supported: true },
     linux: { label: 'Linux', supported: true },
-    android: { label: 'Android', supported: false },
+    android: { label: 'Android', supported: true },
     ios: { label: 'iOS / iPadOS', supported: false },
     unknown: { label: 'your device', supported: false },
 };
@@ -306,7 +312,10 @@ onScroll();
    Marks the detected platform's card, shows an "unavailable on this device"
    notice for unsupported platforms, and hides the launch button where the
    craftedresistance:// protocol cannot exist. */
-const SUPPORTED = ['windows', 'mac', 'linux'];
+const SUPPORTED = ['windows', 'mac', 'linux', 'android'];
+
+// Platforms where the craftedresistance:// launcher protocol exists.
+const DESKTOP = ['windows', 'mac', 'linux'];
 
 /* Maps a detected platform to the CONFIG.versions build-key prefix.
    'mac' -> 'macos-', 'linux' -> 'linux-' — keep these in sync with the
@@ -315,6 +324,7 @@ const BUILD_PREFIX = {
     windows: 'windows-',
     mac: 'macos-',
     linux: 'linux-',
+    android: 'android-',
 };
 
 // cards: badge the visitor's own platform
@@ -335,13 +345,11 @@ const missingGrid = document.getElementById('dl-missing-grid');
 
 // platforms we have no build for, in the order people ask about them
 const NO_BUILD = [
-    { id: 'android', icon: 'i-android', name: 'Android' },
     { id: 'ios', icon: 'i-apple', name: 'iOS / iPadOS' },
 ];
 
 const NO_BUILD_COPY = {
-    android: 'Crafted Resistance is a desktop game and there is no Android build.',
-    ios: 'Crafted Resistance is a desktop game and there is no iOS or iPadOS build.',
+    ios: 'There is still no iOS build as Apple just cares about their ecosystem too much and unsigned .ipas cannot be run on iOS devices',
     unknown: 'We could not detect your platform. Pick your platform below to get the right build.',
 };
 
@@ -387,7 +395,7 @@ if (detected || unsupported) {
 
 // the launch protocol only exists on desktop
 document.querySelectorAll('[data-link="play"]').forEach((btn) => {
-    if (SUPPORTED.includes(platformId)) return;
+    if (DESKTOP.includes(platformId)) return;
 
     btn.classList.add('is-unavailable');
     btn.setAttribute('aria-disabled', 'true');

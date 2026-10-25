@@ -1298,8 +1298,8 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 
 .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-/* three platform cards side by side; stack earlier since each has 3 buttons */
-.dl-platforms { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* four platform cards side by side; stack earlier since each has up to 3 buttons */
+.dl-platforms { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 @media (max-width: 1100px) {
     .dl-platforms { grid-template-columns: repeat(2, minmax(0, 1fr)); }

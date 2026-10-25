@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Downloads — Crafted Resistance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download Crafted Resistance for Windows and macOS.">
+    <meta name="description" content="Download Crafted Resistance for Windows, macOS, Linux and Android.">
     <meta name="theme-color" content="#0b0d11">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Downloads — Crafted Resistance">
-    <meta property="og:description" content="Download Crafted Resistance for Windows and macOS.">
+    <meta property="og:description" content="Download Crafted Resistance for Windows, macOS, Linux and Android.">
     <meta property="og:image" content="screenshot.png">
 
     <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
@@ -131,17 +131,17 @@
                 <p class="kicker" data-reveal>Step 2</p>
                 <h2 class="sec-title" data-reveal>Pick your platform</h2>
                 <p class="sec-sub" data-reveal id="platform-for-version">
-                    Windows, macOS and Linux are supported. Downloads below are for the selected version.
+                    Windows, macOS, Linux and Android are supported. Downloads below are for the selected version.
                 </p>
             </header>
 
-            <!-- Shown only on Linux / Android / iOS / unrecognised -->
+            <!-- Shown only on iOS / unrecognised -->
             <p class="notice notice--warn" id="dl-unsupported" hidden data-reveal>
-                <strong>No desktop build for this device.</strong>
+                <strong>No build for this device.</strong>
                 <span id="dl-unsupported-text"></span>
             </p>
 
-            <div class="grid grid--3 dl-platforms">
+            <div class="grid grid--4 dl-platforms">
 
                 <!-- ---------- Windows ---------- -->
                 <article class="dl-card" data-reveal data-platform="windows" data-matches="windows">
@@ -234,14 +234,41 @@
                     </div>
                 </article>
 
+                <!-- ---------- Android ---------- -->
+                <article class="dl-card" data-reveal data-platform="android" data-matches="android">
+                    <header class="dl-card__head">
+                        <span class="dl-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-android"></use></svg></span>
+                        <div>
+                            <h3>Android <span class="dl-card__yours" hidden>Your device</span></h3>
+                            <p>Android 13 or newer</p>
+                        </div>
+                    </header>
+
+                    <ul class="dl-card__meta">
+                        <li class="dl-row" data-row="version" hidden><span>Version</span><strong data-field="version"></strong></li>
+                        <li class="dl-row" data-row="channel" hidden><span>Channel</span><strong data-field="channel"></strong></li>
+                        <li class="dl-row" data-row="size" hidden><span>Size</span><strong data-field="size"></strong></li>
+                    </ul>
+
+                    <p class="dl-card__none" data-none hidden>No <span data-platform-name>Android</span> build for this version yet.</p>
+
+                    <div class="dl-card__actions">
+                        <a class="btn btn--primary dl-btn" href="#versions" data-download="android-apk">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                            <span data-label>APK (.apk)</span>
+                            <span class="dl-btn__size" data-size hidden></span>
+                        </a>
+                    </div>
+                </article>
+
             </div>
 
-            <!-- Cards for platforms with no build. Hidden on Windows/macOS. -->
+            <!-- Cards for platforms with no build. -->
             <div class="dl-missing" id="dl-missing" hidden data-reveal>
                 <div class="grid grid--3" id="dl-missing-grid"></div>
                 <p class="dl-missing__note">
-                    These platforms are not supported yet. Nothing is planned for them right now
-                    &mdash; if you need one, say so in the Discord and it may change.
+                    There is still no iOS build as Apple just cares about their ecosystem too much
+                    and unsigned .ipas cannot be run on iOS devices
                 </p>
             </div>
 
@@ -296,6 +323,18 @@
                         <div><dt>Notes</dt><dd>Install <code>libgl1</code>, <code>libglx-mesa0</code> and <code>vulkan drivers</code> if the window fails to open</dd></div>
                     </dl>
                 </article>
+
+                <article class="specs" data-reveal>
+                    <h3><svg class="icon" aria-hidden="true"><use href="#i-android"></use></svg> Android</h3>
+                    <dl>
+                        <div><dt>OS</dt><dd>Android 13 (API 33) or newer</dd></div>
+                        <div><dt>Processor</dt><dd>64-bit ARM device from the last few years</dd></div>
+                        <div><dt>Memory</dt><dd>4 GB RAM</dd></div>
+                        <div><dt>Graphics</dt><dd>OpenGL ES 3.0 capable GPU</dd></div>
+                        <div><dt>Storage</dt><dd>1 GB free space</dd></div>
+                        <div><dt>Notes</dt><dd>Sideload the signed APK; allow installs from your browser or file manager when prompted</dd></div>
+                    </dl>
+                </article>
             </div>
         </div>
     </section>
@@ -322,8 +361,12 @@
                     <div class="faq__answer"><p>Ubuntu is the tested target. The AppImage-style bundle is self-contained and is the better bet on Debian, Fedora and Arch, but expect to install graphics drivers yourself. Report anything that breaks in the Discord.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
+                    <summary>How do I install the Android build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Download the APK above, open it, and allow installs from your browser or file manager when Android asks. It is signed with the Crafted Resistance release key, so it installs like any sideloaded app. Worlds, settings and progress are stored on the device.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
                     <summary>Is there an Android or iOS build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>No. Crafted Resistance is a desktop game and there is no Android or iOS build. Join the Discord and it will be announced there first if that changes.</p></div>
+                    <div class="faq__answer"><p>Yes for Android. The signed APK above runs on Android 13 (API 33) or newer and has the same features as the desktop build. There is still no iOS build as Apple just cares about their ecosystem too much and unsigned .ipas cannot be run on iOS devices</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Can I play without installing?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
