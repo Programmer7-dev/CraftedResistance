@@ -1,0 +1,14 @@
+{
+  "name": "craftedresistance-shop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cloudflare Worker for automatic Crafted Resistance purchases",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.99.0"
+  }
+}

@@ -1266,6 +1266,28 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     justify-content: center;
 }
 
+/* download total in the hero; hidden until the Worker answers */
+.dl-count {
+    display: inline-flex;
+    align-items: baseline;
+    gap: .5rem;
+    padding: .45rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, .04);
+    color: var(--muted);
+    font-size: .92rem;
+}
+
+.dl-count[hidden] { display: none; }
+
+.dl-count strong {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1;
+    color: var(--ember-soft);
+}
+
 .notice {
     display: flex;
     flex-wrap: wrap;
@@ -1869,3 +1891,139 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 
     .footer__bar { justify-content: flex-start; }
 }
+
+/* ---------- Shop ---------- */
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    padding: 1.15rem 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: linear-gradient(160deg, var(--surface), var(--bg-alt));
+    transition: transform .2s ease, border-color .2s ease;
+}
+
+.shop-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+}
+
+.shop-item h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: .02em;
+}
+
+.shop-item p {
+    color: var(--muted);
+    font-size: .92rem;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.shop-item__price {
+    color: var(--ember-soft);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    letter-spacing: .03em;
+}
+
+.shop-item__tag {
+    align-self: flex-start;
+    padding: .2rem .5rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.shop-notes {
+    display: grid;
+    gap: .75rem;
+    margin-top: 2rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ember);
+    border-radius: var(--r);
+    background: var(--bg-alt);
+    color: var(--muted);
+}
+
+.shop-notes strong { color: var(--text); }
+
+.shop-thanks {
+    min-height: calc(100svh - var(--nav-h));
+    display: grid;
+    place-items: center;
+    padding: 4rem 0;
+}
+
+.shop-thanks__card {
+    width: min(34rem, 100%);
+    margin-inline: auto;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid var(--line-strong);
+    border-radius: calc(var(--r) + 4px);
+    background: linear-gradient(160deg, var(--surface), var(--bg-alt));
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.shop-thanks__card h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    letter-spacing: .04em;
+    color: var(--ember-soft);
+}
+
+.shop-thanks__card p { color: var(--muted); }
+
+.shop-status {
+    margin: 1.25rem auto;
+    padding: .8rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: rgba(255, 255, 255, .03);
+    color: var(--text);
+    font-size: .88rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.shop-status.is-ok { border-color: rgba(79, 209, 197, .55); color: var(--ice); }
+.shop-status.is-warn { border-color: rgba(255, 179, 71, .55); color: var(--ember-soft); }
+.shop-status.is-error { border-color: rgba(255, 90, 90, .55); color: #ff7a7a; }
+
+.shop-thanks__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    justify-content: center;
+    margin-top: 1.4rem;
+}
+
+.shop-thanks__hint {
+    margin-top: 1.1rem;
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+@media (max-width: 900px) {
+    .shop-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+    .shop-items { grid-template-columns: minmax(0, 1fr); }
+}
+
+.shop-thanks__actions [hidden] { display: none !important; }

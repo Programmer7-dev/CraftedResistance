@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop — Crafted Resistance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Optional Crafted Resistance purchases: uranium and weapons, delivered automatically in game.">
+    <meta name="theme-color" content="#0b0d11">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shop — Crafted Resistance">
+    <meta property="og:description" content="Optional purchases for Crafted Resistance, delivered automatically in game.">
+    <meta property="og:image" content="screenshot.png">
+
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-shop">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav is-stuck" id="nav">
+    <div class="container nav__inner">
+        <a class="brand" href="index.html" aria-label="Crafted Resistance — home">
+            <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+            <span class="brand__text">Crafted<em>Resistance</em></span>
+        </a>
+
+        <nav class="nav__links" id="nav-links" aria-label="Primary">
+            <a href="index.html#world">World</a>
+            <a href="index.html#pillars">Pillars</a>
+            <a href="index.html#progression">Progression</a>
+            <a href="index.html#updates">Updates</a>
+            <a href="index.html#roadmap">Roadmap</a>
+            <a href="index.html#faq">FAQ</a>
+            <a class="btn btn--primary btn--sm nav__cta" href="shop.html" aria-current="page">Shop</a>
+        </nav>
+
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="nav__scrim" id="nav-scrim" hidden></div>
+
+<main id="main">
+
+    <section class="dl-hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__grid" aria-hidden="true"></div>
+
+        <div class="container dl-hero__inner">
+            <p class="eyebrow" data-reveal>
+                <span class="eyebrow__dot" aria-hidden="true"></span>
+                Optional support
+            </p>
+            <h1 class="dl-hero__title" data-reveal>Shop</h1>
+            <p class="hero__lead" data-reveal>
+                The full game stays free. If you want to support development, you can buy a stack
+                of uranium or the weapon you want. Payment is checked automatically, and the item
+                is delivered the next time the shop checks in the game.
+            </p>
+            <div class="dl-hero__actions" data-reveal>
+                <a class="btn btn--primary" href="downloads.html">Download the game</a>
+                <a class="btn btn--ghost" href="#how">How it works</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="items">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>In-game shop</p>
+                <h2 class="sec-title" data-reveal>What you can buy</h2>
+                <p class="sec-sub" data-reveal>
+                    Every purchase is optional. The shop lives inside the game: finish the
+                    checkout in your browser, then return to the game and open SHOP.
+                </p>
+            </header>
+
+            <p class="notice notice--warn" id="shop-cancelled" hidden>
+                <strong>Checkout cancelled.</strong>
+                Nothing was charged. You can open the shop again from the pause menu.
+            </p>
+
+            <div class="shop-items">
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Resource</span>
+                    <h3>10 Uranium</h3>
+                    <p>Ten uranium blocks for fuel, crafting, upgrades and trading. Stacks with the ore you already have.</p>
+                    <span class="shop-item__price">USD 1.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 10</span>
+                    <h3>Antimatter Blade</h3>
+                    <p>The strongest melee weapon in the roster. Heavy hits, a fast swing and the highest damage in the game.</p>
+                    <span class="shop-item__price">USD 5.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 9</span>
+                    <h3>Antimatter Gun</h3>
+                    <p>A high-damage projectile weapon with splash damage. Built for the later floors and the boss fights.</p>
+                    <span class="shop-item__price">USD 5.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 8</span>
+                    <h3>Nanite Launcher</h3>
+                    <p>Fires a cluster of nanites that chew through groups and keep pressure on a target.</p>
+                    <span class="shop-item__price">USD 4.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 7</span>
+                    <h3>Void Launcher</h3>
+                    <p>An arcing launcher with a wide blast. Good for crowds, corners and anything that stands still.</p>
+                    <span class="shop-item__price">USD 4.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 6</span>
+                    <h3>Particle Beam</h3>
+                    <p>A continuous beam that damages everything it touches while the trigger is held.</p>
+                    <span class="shop-item__price">USD 3.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 5</span>
+                    <h3>Sonic Pulse Cannon</h3>
+                    <p>Piercing shockwaves with strong knockback and partial shield bypass.</p>
+                    <span class="shop-item__price">USD 3.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 4</span>
+                    <h3>Plasma Cannon</h3>
+                    <p>Explosive rounds with splash damage and a burn that keeps working after the hit.</p>
+                    <span class="shop-item__price">USD 3.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 3</span>
+                    <h3>Cryo Launcher</h3>
+                    <p>Slows enemies on impact and freezes the weaker ones. A strong pick for holding a corridor.</p>
+                    <span class="shop-item__price">USD 2.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 2</span>
+                    <h3>Gun</h3>
+                    <p>The reliable all-rounder: fast fire, a quick reload and cheap ammunition.</p>
+                    <span class="shop-item__price">USD 2.99</span>
+                </article>
+
+                <article class="shop-item" data-reveal>
+                    <span class="shop-item__tag">Tier 1</span>
+                    <h3>Hammer</h3>
+                    <p>The starter melee tool. Heavy knockback and bonus ore mining, with no ammunition needed.</p>
+                    <span class="shop-item__price">USD 2.99</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--alt" id="how">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Automatic delivery</p>
+                <h2 class="sec-title" data-reveal>How it works</h2>
+                <p class="sec-sub" data-reveal>
+                    No codes, no screenshots and no waiting for a person to check a payment.
+                </p>
+            </header>
+
+            <div class="grid grid--3">
+                <article class="dl-card" data-reveal>
+                    <header class="dl-card__head">
+                        <div>
+                            <h3>1. Open the shop in game</h3>
+                            <p>Pause the game and choose SHOP.</p>
+                        </div>
+                    </header>
+                    <p>Pick the item you want. The game opens a secure Stripe Checkout page in your browser.</p>
+                </article>
+
+                <article class="dl-card" data-reveal>
+                    <header class="dl-card__head">
+                        <div>
+                            <h3>2. Pay with Stripe</h3>
+                            <p>Card and supported local payment methods.</p>
+                        </div>
+                    </header>
+                    <p>Stripe handles the payment. The price is decided by the server, so the browser cannot change what is charged.</p>
+                </article>
+
+                <article class="dl-card" data-reveal>
+                    <header class="dl-card__head">
+                        <div>
+                            <h3>3. Return to the game</h3>
+                            <p>The shop checks for your purchase.</p>
+                        </div>
+                    </header>
+                    <p>Your item is added to the inventory. If the inventory is full, it drops at your feet instead of disappearing.</p>
+                </article>
+            </div>
+
+            <div class="shop-notes">
+                <p><strong>One installation at a time.</strong> The purchase is tied to the game installation that opened the shop. If you play on another device, open the shop on that device.</p>
+                <p><strong>Duplicate weapons are flagged.</strong> If you already have the weapon in your inventory or in a chest, the shop warns you before charging. You can still choose to buy it.</p>
+                <p><strong>The free game stays free.</strong> Purchases are optional support. They do not unlock the story, the floors or the ending.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>Ready?</p>
+                <h2 class="sec-title" data-reveal>Open the shop in game</h2>
+                <p class="sec-sub" data-reveal>
+                    Start Crafted Resistance, pause, and choose SHOP. If you do not have the game yet, download it first.
+                </p>
+            </header>
+            <div class="dl-hero__actions" style="justify-content:center" data-reveal>
+                <a class="btn btn--primary" href="downloads.html">Download Crafted Resistance</a>
+                <a class="btn btn--ghost" href="index.html#faq">Read the FAQ</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__brand">
+            <a class="brand" href="index.html" aria-label="Crafted Resistance - home">
+                <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+                <span class="brand__text">Crafted<em>Resistance</em></span>
+            </a>
+            <p>Survive. Build. Resist. Crafted Resistance is an evolving survival crafting experience focused on exploration, creativity, and progression.</p>
+        </div>
+
+        <nav class="footer__col" aria-label="Game">
+            <h2>Game</h2>
+            <ul>
+                <li><a href="index.html#world">The world</a></li>
+                <li><a href="index.html#pillars">Core pillars</a></li>
+                <li><a href="index.html#progression">Progression</a></li>
+                <li><a href="index.html#updates">Development updates</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Community">
+            <h2>Community</h2>
+            <ul>
+                <li><a href="index.html#discord" data-link="discord">Discord</a></li>
+                <li><a href="index.html#feedback" data-link="feedback">Send feedback</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="index.html#press" data-link="press">Press kit</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container footer__bar">
+        <p>&copy; <span data-year>2026</span> Crafted Resistance. All rights reserved.</p>
+        <p class="footer__build">Under active development — <a href="#top">Back to top</a></p>
+    </div>
+</footer>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 14 5-5 5 5"/></svg>
+</button>
+
+<script>
+    if (new URLSearchParams(location.search).get('cancelled') === '1') {
+        var cancelled = document.getElementById('shop-cancelled');
+        if (cancelled) cancelled.hidden = false;
+    }
+</script>
+<script src="script.js" defer></script>
+</body>
+</html>

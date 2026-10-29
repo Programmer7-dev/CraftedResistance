@@ -9,3 +9,7 @@ deploy.bat
 Thumbs.db
 desktop.ini
 .DS_Store
+# Cloudflare Worker local state and secrets
+shop-worker/node_modules/
+shop-worker/.wrangler/
+shop-worker/.dev.vars

@@ -31,6 +31,7 @@
             <a href="index.html#world">World</a>
             <a href="index.html#pillars">Pillars</a>
             <a href="index.html#updates">Updates</a>
+            <a href="shop.html">Shop</a>
             <a href="downloads.html">Download</a>
             <a class="btn btn--primary btn--sm nav__cta" href="index.html#community">Join community</a>
         </nav>
@@ -49,28 +50,46 @@
 
             <p class="kicker">Legal</p>
             <h1 class="legal__title">Privacy Policy</h1>
-            <p class="legal__updated">Last updated 18 October 2026</p>
+            <p class="legal__updated">Last updated 29 October 2026</p>
 
             <p class="legal__lede">
-                The short version: <strong>this website does not collect, store, or transmit
-                your personal data.</strong> There are no accounts, no analytics, no cookies,
-                and no tracking of any kind.
+                The short version: <strong>this website does not collect personal data.</strong>
+                There are no accounts, no analytics, and no cookies. The one server-side piece is
+                an anonymous download counter that records each device once, so the total is just
+                a number with nothing attached to it.
             </p>
 
             <h2>What this website does and does not do</h2>
             <p>
-                This site is made of static HTML, CSS, JavaScript, and image files. It has no
-                server-side code, no database, and no user accounts. Nothing you do here is
-                recorded or sent to us, because there is nowhere for it to be sent.
+                This site is made of static HTML, CSS, JavaScript, and image files, and it has no
+                user accounts. The only server-side code is a small Cloudflare Worker that keeps
+                the download total &mdash; see <a href="#download-counter">Download counter</a>
+                below.
             </p>
             <ul>
                 <li>No analytics or telemetry scripts</li>
-                <li>No cookies, local storage, or advertising identifiers</li>
+                <li>No cookies and no advertising identifiers</li>
+                <li>One random id in local storage, used only so a device is counted once</li>
                 <li>No sign-up, login, or profile</li>
                 <li>No contact form that stores what you type</li>
             </ul>
 
-            <h2>Third parties that are contacted when you leave this site</h2>
+            <h2 id="download-counter">Download counter</h2>
+            <p>
+                The downloads page shows how many devices have downloaded a build. Clicking a
+                download button sends a random id, which your browser generates and keeps in local
+                storage, to the Cloudflare Worker. The Worker stores only a SHA-256 hash of that
+                id, so it can recognise a device it has already counted without being able to
+                identify you, and it increments a plain number. A device is counted once, no
+                matter how many builds it downloads. Clearing site data in your browser resets the
+                id, so the next download counts as a new device.
+            </p>
+            <p>
+                Nothing else about the click is stored: no IP address, no browser or operating
+                system details, and no record of the page you came from.
+            </p>
+
+            <h2>Third parties</h2>
             <p>
                 The site loads its fonts from Google Fonts, and links out to Discord and GitHub.
                 Those services have their own privacy policies and are governed by them, not by
@@ -93,15 +112,35 @@
                     downloading a build sends your request to GitHub.
                     <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" rel="noopener noreferrer" target="_blank">GitHub's privacy statement</a>
                 </li>
+                <li>
+                    <strong>Cloudflare</strong> &mdash; the download counter runs on a Cloudflare
+                    Worker, so Cloudflare handles the request that reads or updates the total.
+                    <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">Cloudflare's privacy policy</a>
+                </li>
             </ul>
 
-            <h2>Hosting logs</h2>
+            <h2>Hosting and network logs</h2>
             <p>
                 The site is served from GitHub Pages. Like any web host, GitHub may keep standard
                 server logs (such as IP address and request time) for security and abuse
                 prevention. That processing is covered by
                 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" rel="noopener noreferrer" target="_blank">GitHub's privacy statement</a>,
                 not by this policy.
+            </p>
+            <p>
+                Cloudflare likewise sees the network details of requests to the download counter,
+                under its own policy. The counter itself keeps only the hashed device id and the
+                total.
+            </p>
+
+            <h2>Shop purchases</h2>
+            <p>
+                The game's optional shop opens Stripe Checkout in your browser. Stripe receives
+                the payment details and processes the payment; this site and the game never see
+                your card number. A small Cloudflare Worker receives a random installation id, a
+                claim key hash, the item SKU, and the Stripe session id so it can confirm payment
+                and deliver the item. It does not store your name, email address, or card details.
+                Stripe's own privacy policy applies to the checkout page.
             </p>
 
             <h2>The game itself</h2>

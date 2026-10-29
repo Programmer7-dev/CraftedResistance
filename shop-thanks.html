@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment received — Crafted Resistance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crafted Resistance payment confirmation and return to game.">
+    <meta name="theme-color" content="#0b0d11">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-shop">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav is-stuck" id="nav">
+    <div class="container nav__inner">
+        <a class="brand" href="index.html" aria-label="Crafted Resistance — home">
+            <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+            <span class="brand__text">Crafted<em>Resistance</em></span>
+        </a>
+
+        <nav class="nav__links" id="nav-links" aria-label="Primary">
+            <a href="index.html#world">World</a>
+            <a href="index.html#pillars">Pillars</a>
+            <a href="index.html#progression">Progression</a>
+            <a href="index.html#updates">Updates</a>
+            <a href="index.html#roadmap">Roadmap</a>
+            <a href="index.html#faq">FAQ</a>
+            <a class="btn btn--primary btn--sm nav__cta" href="shop.html" aria-current="page">Shop</a>
+        </nav>
+
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="nav__scrim" id="nav-scrim" hidden></div>
+
+<main id="main">
+    <section class="shop-thanks">
+        <div class="container">
+            <div class="shop-thanks__card">
+                <p class="eyebrow" style="justify-content:center">
+                    <span class="eyebrow__dot" aria-hidden="true"></span>
+                    Stripe checkout
+                </p>
+                <h1 id="thanks-title">Payment received</h1>
+                <p id="thanks-text">
+                    Your purchase is being delivered to Crafted Resistance.
+                </p>
+                <div class="shop-status" id="thanks-status">CHECKING PAYMENT...</div>
+                <div class="shop-thanks__actions">
+                    <a class="btn btn--primary" id="return-link" href="#" hidden>Return to game</a>
+                    <a class="btn btn--ghost" href="shop.html">Back to shop</a>
+                </div>
+                <p class="shop-thanks__hint" id="return-hint" hidden>
+                    Return to the game and open SHOP. It checks for your purchase automatically.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__brand">
+            <a class="brand" href="index.html" aria-label="Crafted Resistance - home">
+                <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
+                <span class="brand__text">Crafted<em>Resistance</em></span>
+            </a>
+            <p>Survive. Build. Resist. Crafted Resistance is an evolving survival crafting experience focused on exploration, creativity, and progression.</p>
+        </div>
+
+        <nav class="footer__col" aria-label="Game">
+            <h2>Game</h2>
+            <ul>
+                <li><a href="index.html#world">The world</a></li>
+                <li><a href="index.html#pillars">Core pillars</a></li>
+                <li><a href="index.html#progression">Progression</a></li>
+                <li><a href="index.html#updates">Development updates</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Community">
+            <h2>Community</h2>
+            <ul>
+                <li><a href="index.html#discord" data-link="discord">Discord</a></li>
+                <li><a href="index.html#feedback" data-link="feedback">Send feedback</a></li>
+            </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Legal">
+            <h2>Legal</h2>
+            <ul>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="index.html#press" data-link="press">Press kit</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container footer__bar">
+        <p>&copy; <span data-year>2026</span> Crafted Resistance. All rights reserved.</p>
+        <p class="footer__build">Under active development — <a href="#top">Back to top</a></p>
+    </div>
+</footer>
+
+<script>
+(function () {
+    var params = new URLSearchParams(location.search);
+    var sessionId = params.get('session_id');
+    var api = params.get('api');
+    var port = Number(params.get('port') || '0');
+    var status = document.getElementById('thanks-status');
+    var title = document.getElementById('thanks-title');
+    var text = document.getElementById('thanks-text');
+    var returnLink = document.getElementById('return-link');
+    var returnHint = document.getElementById('return-hint');
+
+    function setStatus(message, kind) {
+        status.textContent = message;
+        status.className = 'shop-status' + (kind ? ' is-' + kind : '');
+    }
+
+    if (sessionId && port > 0 && port < 65536) {
+        returnLink.href = 'http://127.0.0.1:' + port + '/claim?session_id=' +
+            encodeURIComponent(sessionId);
+        returnLink.hidden = false;
+    } else if (sessionId) {
+        returnHint.hidden = false;
+    }
+
+    if (!sessionId) {
+        title.textContent = 'No payment session';
+        text.textContent = 'This page is only opened after a checkout. Open SHOP in the game to start a purchase.';
+        setStatus('NOTHING TO CONFIRM', 'warn');
+        return;
+    }
+
+    var base = '';
+    try {
+        if (api) {
+            var parsed = new URL(api);
+            if (parsed.protocol === 'https:') base = parsed.origin;
+        }
+    } catch (ignored) {}
+
+    if (!base) {
+        // Stripe only redirects to the success page after a completed card payment. The Worker
+        // API is optional here: the local callback and the in-game polling do the real work.
+        setStatus('PAYMENT RECEIVED - RETURN TO GAME', 'ok');
+        return;
+    }
+
+    var tries = 0;
+    function check() {
+        tries++;
+        fetch(base + '/api/session?session_id=' + encodeURIComponent(sessionId), { cache: 'no-store' })
+            .then(function (response) {
+                if (!response.ok) throw new Error('status ' + response.status);
+                return response.json();
+            })
+            .then(function (data) {
+                if (data && data.paid) {
+                    title.textContent = 'Payment confirmed';
+                    text.textContent = 'Your item is waiting for the game. Return to Crafted Resistance and open SHOP if it is not already open.';
+                    setStatus('PAID - DELIVERY IS AUTOMATIC', 'ok');
+                } else if (tries < 10) {
+                    setStatus('PAYMENT PROCESSING - CHECKING AGAIN', 'warn');
+                    setTimeout(check, 3000);
+                } else {
+                    setStatus('PAYMENT NOT CONFIRMED YET', 'warn');
+                    text.textContent = 'If you completed the payment, return to the game and open SHOP. It will check again.';
+                }
+            })
+            .catch(function () {
+                setStatus('PAYMENT RECEIVED - RETURN TO GAME', 'ok');
+            });
+    }
+    check();
+})();
+</script>
+<script src="script.js" defer></script>
+</body>
+</html>

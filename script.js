@@ -13,6 +13,13 @@ const CONFIG = {
     play: 'craftedresistance://play',
     discord: 'https://discord.gg/Ker5hu4NG',
 
+    /* --- download counter ---
+       Origin of the shop Worker, e.g.
+         'https://craftedresistance-shop.your-account.workers.dev'
+       Leave it blank to hide the download total. The Worker keeps the count and
+       records each device once, so page views that never click a button do not count. */
+    downloadApi: '',
+
     /* --- downloads ---
        VERSIONS render newest-first as a selectable list. Each version carries
        its own build files, so older releases stay downloadable.
@@ -407,6 +414,98 @@ document.querySelectorAll('[data-link="play"]').forEach((btn) => {
     if (text === 'Play now') label.textContent = 'Play now (desktop only)';
 });
 
+/* ---------- download counter ----------
+   The shop Worker owns the total (see shop-worker/worker.js). This page only reports
+   a click, and only once per device: the random id below lives in localStorage and is
+   sent with the click, so a device that downloads twice still counts once.
+   With CONFIG.downloadApi empty the counter is inert and the hero total stays hidden. */
+const DOWNLOAD_API = String(CONFIG.downloadApi || '').replace(/\/+$/, '');
+const DOWNLOAD_DEVICE_KEY = 'cr.download.device';
+const DOWNLOAD_COUNTED_KEY = 'cr.download.counted';
+
+const dlCount = document.getElementById('dl-count');
+const dlCountValue = dlCount ? dlCount.querySelector('[data-count]') : null;
+
+function readStorage(key) {
+    try {
+        return window.localStorage.getItem(key);
+    } catch (err) {
+        return null;
+    }
+}
+
+function writeStorage(key, value) {
+    try {
+        window.localStorage.setItem(key, value);
+    } catch (err) {
+        // private mode or a full quota: the count still works, just not once per device
+    }
+}
+
+function downloadDeviceId() {
+    const stored = readStorage(DOWNLOAD_DEVICE_KEY);
+    if (stored && /^[A-Za-z0-9-]{16,64}$/.test(stored)) return stored;
+
+    const id = (window.crypto && typeof window.crypto.randomUUID === 'function')
+        ? window.crypto.randomUUID()
+        : Array.from({length: 32}, () => Math.floor(Math.random() * 16).toString(16)).join('');
+
+    writeStorage(DOWNLOAD_DEVICE_KEY, id);
+    return id;
+}
+
+function paintDownloadCount(count) {
+    if (!dlCount || !dlCountValue) return;
+    const total = Number(count);
+    if (!Number.isFinite(total) || total <= 0) return;
+
+    let text;
+    try {
+        text = new Intl.NumberFormat().format(total);
+    } catch (err) {
+        text = String(total);
+    }
+
+    dlCountValue.textContent = text;
+    dlCount.hidden = false;
+    dlCount.classList.add('is-visible');
+}
+
+function requestDownloadCount() {
+    if (!DOWNLOAD_API || !dlCount) return null;
+    return fetch(`${DOWNLOAD_API}/api/download`, {cache: 'no-store'})
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+            if (!data || typeof data.count !== 'number') return null;
+            paintDownloadCount(data.count);
+            return data;
+        })
+        .catch(() => null);
+}
+
+function recordDownload(build) {
+    if (!DOWNLOAD_API || !dlCount) return;
+    if (readStorage(DOWNLOAD_COUNTED_KEY) === '1') return;
+
+    fetch(`${DOWNLOAD_API}/api/download`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({device: downloadDeviceId(), build}),
+        keepalive: true,
+    })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+            if (!data || typeof data.count !== 'number') return;
+            paintDownloadCount(data.count);
+            if (data.counted) writeStorage(DOWNLOAD_COUNTED_KEY, '1');
+        })
+        .catch(() => {
+            // offline or blocked: the next click tries again
+        });
+}
+
+if (dlCount) requestDownloadCount();
+
 /* ---------- downloads page ----------
    Step 1: render CONFIG.versions as a selectable list.
    Step 2: platform buttons read the selected version's build files.
@@ -523,7 +622,7 @@ if (versionList) {
                     btn.href = url;
                     btn.title = `${url.split('/').pop()} — ${(selected.sizes || {})[key] || 'size unknown'}`;
                     btn.removeAttribute('aria-disabled');
-                    btn.onclick = null;
+                    btn.onclick = () => recordDownload(key);
 
                     if (/^https?:/i.test(url)) {
                         btn.target = '_blank';

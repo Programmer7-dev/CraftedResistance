@@ -53,6 +53,7 @@
             <a href="index.html#updates">Updates</a>
             <a href="index.html#roadmap">Roadmap</a>
             <a href="index.html#faq">FAQ</a>
+            <a href="shop.html">Shop</a>
             <a class="btn btn--primary btn--sm nav__cta" href="downloads.html" aria-current="page">Download</a>
         </nav>
 
@@ -88,6 +89,13 @@
                 Crafted Resistance is under active development. Builds are shared with the
                 community first &mdash; join the Discord to get early access and report what you find.
             </p>
+
+            <!-- Filled in by script.js from the shop Worker; hidden without CONFIG.downloadApi -->
+            <p class="dl-count" id="dl-count" data-reveal hidden>
+                <strong data-count>0</strong>
+                <span>downloads so far</span>
+            </p>
+
             <div class="dl-hero__actions" data-reveal>
                 <a class="btn btn--primary" href="index.html#community" data-link="discord">
                     <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
