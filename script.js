@@ -14,10 +14,10 @@ const CONFIG = {
     discord: 'https://discord.gg/Ker5hu4NG',
 
     /* --- download counter ---
-       Origin of the shop Worker, e.g.
-         'https://craftedresistance-shop.your-account.workers.dev'
-       Leave it blank to hide the download total. The Worker keeps the count and
-       records each device once, so page views that never click a button do not count. */
+       Leave blank to show the total from GitHub Releases, which publishes a
+       download count for every uploaded file. Set this to a deployed shop Worker
+       origin (e.g. 'https://craftedresistance-shop.your-account.workers.dev') to use
+       its per-device counter instead; see shop-worker/worker.js. */
     downloadApi: '',
 
     /* --- downloads ---
@@ -415,10 +415,10 @@ document.querySelectorAll('[data-link="play"]').forEach((btn) => {
 });
 
 /* ---------- download counter ----------
-   The shop Worker owns the total (see shop-worker/worker.js). This page only reports
-   a click, and only once per device: the random id below lives in localStorage and is
-   sent with the click, so a device that downloads twice still counts once.
-   With CONFIG.downloadApi empty the counter is inert and the hero total stays hidden. */
+   The total comes from GitHub Releases by default: GitHub publishes a download
+   count for each uploaded file and the page adds those up, so nothing about the
+   visitor is stored anywhere. With CONFIG.downloadApi set, a deployed shop Worker
+   counts instead and records each device once. */
 const DOWNLOAD_API = String(CONFIG.downloadApi || '').replace(/\/+$/, '');
 const DOWNLOAD_DEVICE_KEY = 'cr.download.device';
 const DOWNLOAD_COUNTED_KEY = 'cr.download.counted';
@@ -504,7 +504,84 @@ function recordDownload(build) {
         });
 }
 
-if (dlCount) requestDownloadCount();
+/* GitHub Releases publish a download_count for every uploaded file, so the page can
+   show a real total without any backend. The owner and repository are read from the
+   build URLs in CONFIG, and only files the page actually links to are counted, so
+   checksums, launchers and other attachments do not inflate the number. */
+function githubRepoFromBuilds() {
+    const versions = Array.isArray(CONFIG.versions) ? CONFIG.versions : [];
+    for (const version of versions) {
+        for (const url of Object.values(version.builds || {})) {
+            if (typeof url !== 'string') continue;
+            const match = /^https?:\/\/(?:www\.)?github\.com\/([^/]+)\/([^/]+)\//.exec(url);
+            if (match) return { owner: match[1], repo: match[2] };
+        }
+    }
+    return null;
+}
+
+function githubAssetNames() {
+    const versions = Array.isArray(CONFIG.versions) ? CONFIG.versions : [];
+    const names = new Set();
+
+    for (const version of versions) {
+        for (const url of Object.values(version.builds || {})) {
+            if (typeof url !== 'string') continue;
+            const name = url.split(/[?#]/)[0].split('/').pop();
+            if (name) names.add(name.toLowerCase());
+        }
+    }
+    return names;
+}
+
+async function githubDownloadTotal(repo, names) {
+    if (!names.size) return 0;
+
+    const seen = new Set();
+    let total = 0;
+
+    // 100 releases per page is the API maximum; the loop stops at the last page.
+    for (let page = 1; page <= 5; page += 1) {
+        const res = await fetch(
+            `https://api.github.com/repos/${repo.owner}/${repo.repo}/releases?per_page=100&page=${page}`,
+            { headers: { Accept: 'application/vnd.github+json' } }
+        );
+        if (!res.ok) return null;
+
+        const releases = await res.json();
+        if (!Array.isArray(releases) || !releases.length) break;
+
+        releases.forEach((release) => {
+            (release.assets || []).forEach((asset) => {
+                if (seen.has(asset.id)) return;
+                seen.add(asset.id);
+                if (!names.has(String(asset.name || '').toLowerCase())) return;
+                total += Number(asset.download_count) || 0;
+            });
+        });
+
+        if (releases.length < 100) break;
+    }
+
+    return total;
+}
+
+if (dlCount) {
+    if (DOWNLOAD_API) {
+        requestDownloadCount();
+    } else {
+        const repo = githubRepoFromBuilds();
+        if (repo) {
+            githubDownloadTotal(repo, githubAssetNames())
+                .then((total) => {
+                    if (typeof total === 'number') paintDownloadCount(total);
+                })
+                .catch(() => {
+                    // GitHub is unreachable or rate limiting: leave the total hidden
+                });
+        }
+    }
+}
 
 /* ---------- downloads page ----------
    Step 1: render CONFIG.versions as a selectable list.

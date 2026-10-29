@@ -194,10 +194,11 @@ same total with `counted: false`.
 ```
 
 The total lives in the KV key `downloads:total`, device records in `downloads:device:<hash>`.
-Point the site at the Worker with `CONFIG.downloadApi` in `script.js`; leave it empty to hide the
-total. The counter needs either the optional `DOWNLOADS` namespace or the existing
-`ENTITLEMENTS` one. KV has no atomic increment, so a sudden burst of first downloads could lose
-a count or two; move the counter to a Durable Object if that ever matters.
+This counter is optional: leave `CONFIG.downloadApi` in `script.js` empty and the page adds up
+GitHub's public release download counts instead (no backend needed). Set it to the Worker origin
+to switch to the once-per-device count. The Worker needs either the optional `DOWNLOADS` namespace
+or the existing `ENTITLEMENTS` one. KV has no atomic increment, so a sudden burst of first
+downloads could lose a count or two; move the counter to a Durable Object if that ever matters.
 
 ### `POST /api/stripe-webhook`
 

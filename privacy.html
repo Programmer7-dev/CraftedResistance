@@ -53,40 +53,32 @@
             <p class="legal__updated">Last updated 29 October 2026</p>
 
             <p class="legal__lede">
-                The short version: <strong>this website does not collect personal data.</strong>
-                There are no accounts, no analytics, and no cookies. The one server-side piece is
-                an anonymous download counter that records each device once, so the total is just
-                a number with nothing attached to it.
+                The short version: <strong>this website does not collect, store, or transmit
+                your personal data.</strong> There are no accounts, no analytics, no cookies,
+                and no tracking of any kind. The download total is read from GitHub's public
+                release counts, so it is a number with nothing attached to it.
             </p>
 
             <h2>What this website does and does not do</h2>
             <p>
                 This site is made of static HTML, CSS, JavaScript, and image files, and it has no
-                user accounts. The only server-side code is a small Cloudflare Worker that keeps
-                the download total &mdash; see <a href="#download-counter">Download counter</a>
-                below.
+                user accounts. Nothing you do here is recorded by us, because there is nowhere
+                for it to be recorded: the only number the site shows, the download total, comes
+                from GitHub's own public figures.
             </p>
             <ul>
                 <li>No analytics or telemetry scripts</li>
-                <li>No cookies and no advertising identifiers</li>
-                <li>One random id in local storage, used only so a device is counted once</li>
+                <li>No cookies, local storage, or advertising identifiers</li>
                 <li>No sign-up, login, or profile</li>
                 <li>No contact form that stores what you type</li>
             </ul>
 
             <h2 id="download-counter">Download counter</h2>
             <p>
-                The downloads page shows how many devices have downloaded a build. Clicking a
-                download button sends a random id, which your browser generates and keeps in local
-                storage, to the Cloudflare Worker. The Worker stores only a SHA-256 hash of that
-                id, so it can recognise a device it has already counted without being able to
-                identify you, and it increments a plain number. A device is counted once, no
-                matter how many builds it downloads. Clearing site data in your browser resets the
-                id, so the next download counts as a new device.
-            </p>
-            <p>
-                Nothing else about the click is stored: no IP address, no browser or operating
-                system details, and no record of the page you came from.
+                The downloads page shows how many times the builds have been downloaded. GitHub
+                publishes a download count for every file attached to a release, and the page
+                simply adds up the files it links to. Your browser asks GitHub for that public
+                number; this site stores nothing, and no identifier of any kind is sent.
             </p>
 
             <h2>Third parties</h2>
@@ -113,8 +105,8 @@
                     <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" rel="noopener noreferrer" target="_blank">GitHub's privacy statement</a>
                 </li>
                 <li>
-                    <strong>Cloudflare</strong> &mdash; the download counter runs on a Cloudflare
-                    Worker, so Cloudflare handles the request that reads or updates the total.
+                    <strong>Cloudflare</strong> &mdash; the optional shop backend runs on a
+                    Cloudflare Worker, so Cloudflare handles those purchase requests.
                     <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer" target="_blank">Cloudflare's privacy policy</a>
                 </li>
             </ul>
@@ -126,11 +118,6 @@
                 prevention. That processing is covered by
                 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" rel="noopener noreferrer" target="_blank">GitHub's privacy statement</a>,
                 not by this policy.
-            </p>
-            <p>
-                Cloudflare likewise sees the network details of requests to the download counter,
-                under its own policy. The counter itself keeps only the hashed device id and the
-                total.
             </p>
 
             <h2>Shop purchases</h2>
