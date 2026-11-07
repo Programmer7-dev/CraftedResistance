@@ -54,6 +54,18 @@ const CONFIG = {
                 'android-apk': '127 MB',
             },
 
+            /* SHA-256 of each published file, shown on the platform card so the
+               download can be verified. Taken from the GitHub release asset digests;
+               update these whenever you replace a build. */
+            checksums: {
+                'windows-x64': '0267f78151d10790f6ce34a8ea2480422f32058d6b50f98d744e0718ceeac026',
+                'windows-x64-portable': '65ec719a8cacb881e501dc9dde9abb7517aeae2353d614606a52ada7a66dad69',
+                'macos-arm64': 'd78a4550850915f144cf06ed30c9b69ad1fe1f15d40ded50e869e59727bf0694',
+                'macos-x64': 'd65f9d4c4fbedd1e658aadaa967bfed27c848f40d93ca2cd9b044e1e9ee5c960',
+                'linux-portable': 'efcc0755de01715a75c34789fc8fdce926e4e84340e89e75362ec48445a896cc',
+                'android-apk': '3c852691e710589d2659e0d7f23566a19d113311a8ad48ed17ce5434ca92d53c',
+            },
+
             builds: {
                 // Windows — installer, then portable
                 'windows-x64':
@@ -720,6 +732,38 @@ if (versionList) {
 
                 if (action) action.hidden = !card.querySelector('[data-download]:not([hidden])');
             });
+
+            // SHA-256 for each file this card offers, taken from CONFIG.versions checksums
+            let checksumsBox = card.querySelector('[data-checksums]');
+            if (!checksumsBox) {
+                checksumsBox = document.createElement('details');
+                checksumsBox.className = 'dl-checksum';
+                checksumsBox.setAttribute('data-checksums', '');
+                checksumsBox.innerHTML = '<summary>SHA-256 checksums</summary><ul></ul>';
+
+                const actions = card.querySelector('.dl-card__actions');
+                if (actions) actions.insertAdjacentElement('afterend', checksumsBox);
+            }
+
+            const checksumList = checksumsBox.querySelector('ul');
+            checksumList.textContent = '';
+
+            card.querySelectorAll('[data-download]').forEach((btn) => {
+                const key = btn.dataset.download;
+                const url = builds[key];
+                const hash = (selected && selected.checksums && selected.checksums[key]) || '';
+                if (!url || !hash || btn.hidden) return;
+
+                const item = document.createElement('li');
+                const name = document.createElement('span');
+                const value = document.createElement('code');
+                name.textContent = (btn.querySelector('[data-label]') || btn).textContent.trim();
+                value.textContent = hash;
+                item.append(name, value);
+                checksumList.appendChild(item);
+            });
+
+            checksumsBox.hidden = !checksumList.children.length;
 
             // a card with nothing to offer should say so, not just look empty
             const none = card.querySelector('[data-none]');

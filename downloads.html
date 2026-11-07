@@ -86,8 +86,8 @@
             </p>
 
             <p class="hero__lead" data-reveal>
-                Crafted Resistance is under active development. Builds are shared with the
-                community first &mdash; join the Discord to get early access and report what you find.
+                Crafted Resistance is under active development. Every build below is public
+                &mdash; download the latest, and report anything you find in the Discord.
             </p>
 
             <!-- Filled in by script.js from GitHub Releases (or the shop Worker) -->
@@ -97,13 +97,13 @@
             </p>
 
             <div class="dl-hero__actions" data-reveal>
-                <a class="btn btn--primary" href="index.html#community" data-link="discord">
-                    <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
-                    Get access via Discord
+                <a class="btn btn--primary" href="#versions">
+                    <svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg>
+                    Download the latest build
                 </a>
-                <a class="btn btn--ghost" href="index.html#updates">
-                    <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
-                    Read development updates
+                <a class="btn btn--ghost" href="https://discord.gg/Ker5hu4NG" data-link="discord">
+                    <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
+                    Join the Discord
                 </a>
             </div>
         </div>
@@ -275,14 +275,15 @@
             <div class="dl-missing" id="dl-missing" hidden data-reveal>
                 <div class="grid grid--3" id="dl-missing-grid"></div>
                 <p class="dl-missing__note">
-                    There is still no iOS build as Apple just cares about their ecosystem too much
-                    and unsigned .ipas cannot be run on iOS devices
+                    There is no iOS build: Apple requires a paid developer programme to
+                    distribute apps outside the App Store, and we are not pursuing that right now.
                 </p>
             </div>
 
             <p class="dl-fineprint" data-reveal>
-                Already installed? Open the game straight from your browser with the
-                <code>craftedresistance://play</code> launch button on the homepage.
+                Already installed? Use the <code>craftedresistance://play</code> launch button on
+                the homepage to launch the installed game. Every file's SHA-256 checksum is listed
+                on its platform card.
             </p>
         </div>
     </section>
@@ -304,7 +305,7 @@
                         <div><dt>Memory</dt><dd>8 GB RAM</dd></div>
                         <div><dt>Graphics</dt><dd>GPU with 2 GB VRAM, DirectX 11</dd></div>
                         <div><dt>Storage</dt><dd>2 GB free space</dd></div>
-                        <div><dt>Notes</dt><dd>May prompt for a graphics driver update on first launch</dd></div>
+                        <div><dt>Notes</dt><dd>The build is not code-signed yet, so Windows SmartScreen may warn on first run &mdash; choose <strong>More info</strong>, then <strong>Run anyway</strong>. May also prompt for a graphics driver update.</dd></div>
                     </dl>
                 </article>
 
@@ -316,7 +317,7 @@
                         <div><dt>Memory</dt><dd>8 GB RAM</dd></div>
                         <div><dt>Graphics</dt><dd>Metal-capable GPU</dd></div>
                         <div><dt>Storage</dt><dd>2 GB free space</dd></div>
-                        <div><dt>Notes</dt><dd>First launch requires approving the app in Privacy &amp; Security</dd></div>
+                        <div><dt>Notes</dt><dd>If macOS blocks the first launch, right-click the app and choose <strong>Open</strong>. After that, approve it under Privacy &amp; Security.</dd></div>
                     </dl>
                 </article>
 
@@ -340,7 +341,7 @@
                         <div><dt>Memory</dt><dd>4 GB RAM</dd></div>
                         <div><dt>Graphics</dt><dd>OpenGL ES 3.0 capable GPU</dd></div>
                         <div><dt>Storage</dt><dd>1 GB free space</dd></div>
-                        <div><dt>Notes</dt><dd>Sideload the signed APK; allow installs from your browser or file manager when prompted</dd></div>
+                        <div><dt>Notes</dt><dd>Sideload the signed APK and allow installs when prompted. Play Protect may warn about apps from outside the Play Store &mdash; tap <strong>Install anyway</strong> if you trust the file.</dd></div>
                     </dl>
                 </article>
             </div>
@@ -358,23 +359,31 @@
             <div class="faq" data-faq>
                 <details class="faq__item" data-reveal>
                     <summary>The download button does nothing. Why?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Two common causes. Either the build URL has not been published yet, or your browser is blocking the custom protocol. On desktop browsers you can usually allow a site to open an external app from the icon in the address bar.</p></div>
+                    <div class="faq__answer"><p>Either the build URL has not been published yet, or your browser is blocking the file. If the button is greyed out, there is no build for your platform in the selected version. The <code>craftedresistance://</code> launch button is different: it needs the game installed and may ask your browser for permission to open an external app.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Windows says the app is unsafe, or SmartScreen blocked it.<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>The installer is not code-signed yet, so Windows shows a SmartScreen warning for a new, low-reputation file. Choose <strong>More info</strong>, then <strong>Run anyway</strong>, once you have checked the SHA-256 on the Windows card. If you would rather not bypass the warning, wait for a signed release.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>How do I run the Linux build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Unzip the <strong>AppDir</strong> bundle wherever you want it, open the folder, and double-click the executable &mdash; or run it from a terminal with <code>./CraftedResistance</code>. Mark it executable first with <code>chmod +x CraftedResistance</code>. Nothing gets installed system-wide, so delete the folder to uninstall.</p></div>
+                    <div class="faq__answer"><p>Download the <code>.AppImage</code>, mark it executable with <code>chmod +x CraftedResistance-1.0-x86_64.AppImage</code>, then run it with <code>./CraftedResistance-1.0-x86_64.AppImage</code>. Nothing is installed system-wide, so deleting the file removes the game.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Does the game work on other Linux distros?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Ubuntu is the tested target. The AppImage-style bundle is self-contained and is the better bet on Debian, Fedora and Arch, but expect to install graphics drivers yourself. Report anything that breaks in the Discord.</p></div>
+                    <div class="faq__answer"><p>Ubuntu is the tested target. The AppImage is self-contained and is the better bet on Debian, Fedora and Arch, but you may need to install graphics drivers yourself. Report anything that breaks in the Discord.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>How do I install the Android build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Download the APK above, open it, and allow installs from your browser or file manager when Android asks. It is signed with the Crafted Resistance release key, so it installs like any sideloaded app. Worlds, settings and progress are stored on the device.</p></div>
+                    <div class="faq__answer"><p>Download the APK, open it, and allow installs from your browser or file manager when Android asks. It is signed with the Crafted Resistance release key, so it installs like any sideloaded app. Play Protect may warn about apps from outside the Play Store &mdash; tap <strong>Install anyway</strong> if the SHA-256 matches the Android card. Worlds, settings and progress are stored on the device.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>How do I check a file's SHA-256?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Compare the hash on the platform card with one computed on your machine. On Windows PowerShell: <code>Get-FileHash .\CraftedResistance-1.0.exe -Algorithm SHA256</code>. On macOS or Linux: <code>shasum -a 256 CraftedResistance-1.0.apk</code>. They must match exactly; if they do not, delete the file and download it again.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Is there an Android or iOS build?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Yes for Android. The signed APK above runs on Android 13 (API 33) or newer and has the same features as the desktop build. There is still no iOS build as Apple just cares about their ecosystem too much and unsigned .ipas cannot be run on iOS devices</p></div>
+                    <div class="faq__answer"><p>Yes for Android. The signed APK runs on Android 13 (API 33) or newer and has the same features as the desktop build. There is no iOS build: Apple requires a paid developer programme to distribute apps outside the App Store, and we are not pursuing that right now.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Can I play without installing?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
@@ -397,7 +406,7 @@
                 updated on new features, and be ready when the next build arrives.
             </p>
             <div class="closing__actions">
-                <a class="btn btn--primary btn--lg" href="index.html#community" data-link="discord">
+                <a class="btn btn--primary btn--lg" href="https://discord.gg/Ker5hu4NG" data-link="discord">
                     <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
                     Join the community
                 </a>
@@ -436,7 +445,7 @@
         <nav class="footer__col" aria-label="Community">
             <h2>Community</h2>
             <ul>
-                <li><a href="#discord" data-link="discord">Discord</a></li>
+                <li><a href="https://discord.gg/Ker5hu4NG" data-link="discord">Discord</a></li>
                 <li><a href="#feedback" data-link="feedback">Send feedback</a></li>
             </ul>
         </nav>

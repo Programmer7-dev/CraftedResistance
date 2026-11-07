@@ -1718,6 +1718,46 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     font-size: .92rem;
 }
 
+/* SHA-256 list inside each platform card */
+.dl-checksum {
+    margin-top: 1rem;
+    padding-top: .8rem;
+    border-top: 1px dashed var(--line);
+    color: var(--muted);
+    font-size: .8rem;
+}
+
+.dl-checksum[hidden] { display: none; }
+
+.dl-checksum summary {
+    cursor: pointer;
+    color: #9aa4b4;
+    font-weight: 500;
+}
+
+.dl-checksum summary:hover { color: var(--text); }
+
+.dl-checksum ul {
+    display: grid;
+    gap: .6rem;
+    margin-top: .65rem;
+}
+
+.dl-checksum li {
+    display: grid;
+    gap: .15rem;
+}
+
+.dl-checksum span { color: #8892a3; }
+
+.dl-checksum code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .72rem;
+    line-height: 1.5;
+    color: #cbd3e0;
+    word-break: break-all;
+}
+
 .specs {
     padding: 1.7rem 1.6rem;
     border: 1px solid var(--line);
