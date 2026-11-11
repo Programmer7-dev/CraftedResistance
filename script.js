@@ -101,8 +101,8 @@ const CONFIG = {
     press: '',
 };
 
-/* the six pillars from "The Foundations of Survival" */
-const PILLARS = ['Explore', 'Gather', 'Craft', 'Build', 'Survive', 'Expand'];
+/* the six beats of a facility run, shown in the ticker */
+const PILLARS = ['Drop in', 'Clear rooms', 'Fight guardians', 'Craft', 'Ride the elevator', 'Reach the Core'];
 
 /* ---------- platform detection ----------
    Best-effort. The UA string is a lie on desktop (Chrome on Windows still says

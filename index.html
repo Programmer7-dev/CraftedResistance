@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crafted Resistance — Survive. Build. Resist.</title>
+    <title>Crafted Resistance — Drop Into the Facility</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,19 +13,20 @@
           content="ADC0A4DD41B31EBA5A6218D354FD9C15">
 
     <meta name="description"
-          content="Crafted Resistance is an in-development survival crafting game where players gather resources, build structures, explore a procedurally generated world, and overcome environmental challenges.">
+          content="Crafted Resistance is a first-person voxel survival game set in a ten-floor sci-fi containment facility. Clear 100 rooms, break the spawners, fight the guardians, craft gear, and ride the elevator to the Core.">
 
     <meta name="theme-color" content="#0b0d11">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Crafted Resistance — Survive. Build. Resist.">
-    <meta property="og:description" content="An in-development survival crafting game. Explore, gather, build, survive and expand.">
-    <meta property="og:image" content="screenshot.png">
+    <meta property="og:title" content="Crafted Resistance — Drop Into the Facility">
+    <meta property="og:description" content="A first-person voxel survival game in a ten-floor containment facility. Clear 100 rooms, fight guardians, craft gear, and reach the Core.">
+    <meta property="og:image" content="https://programmer7-dev.github.io/CraftedResistance/screenshots/facility-hazard.jpg">
 
-    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,11 +65,11 @@
         </a>
 
         <nav class="nav__links" id="nav-links" aria-label="Primary">
-            <a href="#world">World</a>
-            <a href="#pillars">Pillars</a>
+            <a href="#world">Facility</a>
+            <a href="#pillars">Gameplay</a>
             <a href="#progression">Progression</a>
-            <a href="#updates">Updates</a>
-            <a href="#roadmap">Roadmap</a>
+            <a href="#updates">Dev log</a>
+            <a href="#roadmap">Status</a>
             <a href="#faq">FAQ</a>
             <a href="shop.html">Shop</a>
             <a class="btn btn--ghost btn--sm nav__cta" href="downloads.html">Download</a>
@@ -103,10 +104,10 @@
             <p class="hero__tagline" data-reveal>Survive. Build. Resist.</p>
 
             <p class="hero__lead" data-reveal>
-                Crafted Resistance is an in-development survival crafting game where players gather
-                resources, build structures, explore a procedurally generated world, and overcome
-                environmental challenges. Every update adds new mechanics, blocks, items, and new
-                ways to play.
+                A first-person voxel survival game inside a ten-floor containment facility. Clear
+                100 rooms, break the spawners that keep each door locked, fight the guardian waiting
+                on every floor, and ride the elevator toward the Core. Mine, craft, upgrade, and
+                bring a friend-shaped bot back online.
             </p>
 
             <div class="hero__actions" data-reveal>
@@ -126,7 +127,8 @@
 
             <p class="hero__note" data-reveal>
                 Play now launches the desktop build &mdash; requires Crafted Resistance to be installed.
-                On Android, download the APK from the <a href="downloads.html">downloads page</a>.
+                Windows, macOS, Linux and Android builds are on the
+                <a href="downloads.html">downloads page</a>.
             </p>
         </div>
 
@@ -136,34 +138,69 @@
     </section>
 
     <!-- ============ pillar ticker ============ -->
-    <div class="ticker" data-ticker aria-label="The foundations of survival">
+    <div class="ticker" data-ticker aria-label="The facility run">
         <div class="ticker__track" data-ticker-track></div>
     </div>
 
     <!-- ============ the world ============ -->
-    <section class="section" id="world">
+    <section class="section section--alt" id="world">
         <div class="container">
             <header class="sec-head sec-head--center">
-                <p class="kicker" data-reveal>The world</p>
-                <h2 class="sec-title" data-reveal>Explore. Gather. Build.</h2>
+                <p class="kicker" data-reveal>The facility</p>
+                <h2 class="sec-title" data-reveal>Ten floors. One hundred rooms. One way out.</h2>
                 <p class="sec-sub" data-reveal>
-                    The world of Crafted Resistance is constantly evolving. Explore new areas,
-                    collect resources, build your own base, and prepare for future updates that will
-                    expand gameplay, progression, exploration, and survival mechanics. Every journey
-                    begins with limited resources and endless possibilities.
+                    Crafted Resistance is set in a maintained sci-fi containment facility, not a
+                    ruined one. Each floor has ten rooms with their own materials and purpose:
+                    storage, research, medical, server, cryo, nanite, antimatter, shield containment,
+                    and more. The doors stay locked until you break the spawners inside. Guardians
+                    drop elevator keycards, so clearing a floor is only half the job. Outside, a
+                    semi-transparent blue dome keeps a city skyline out of reach until the terrace
+                    guardian falls.
                 </p>
             </header>
 
             <figure class="frame frame--wide" data-reveal>
                 <div class="frame__bar">
                     <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                    <span class="frame__path">crafted-resistance · development build</span>
+                    <span class="frame__path">crafted-resistance · in-game capture</span>
                 </div>
                 <div class="frame__shot">
-                    <img src="screenshot.png" width="1535" height="707" alt="Early development footage from Crafted Resistance showing a tall stone structure built on an open plain.">
+                    <img src="screenshots/plains.jpg" width="1600" height="900" alt="Crafted Resistance screenshot showing block-built hills, grass and trees under a blue sky.">
                 </div>
-                <figcaption>Early footage from the current development build. Nothing here is final.</figcaption>
+                <figcaption>The facility sits in a generated block world. What you can see is only the outside.</figcaption>
             </figure>
+        </div>
+    </section>
+
+    <!-- ============ screenshots ============ -->
+    <section class="section" id="screenshots">
+        <div class="container">
+            <header class="sec-head sec-head--center">
+                <p class="kicker" data-reveal>In-game</p>
+                <h2 class="sec-title" data-reveal>Inside the drop</h2>
+                <p class="sec-sub" data-reveal>
+                    Real frames from the current build: the lockdown ends, a cleared room, and the
+                    title sequence that starts every run.
+                </p>
+            </header>
+
+            <div class="shot-grid">
+                <figure class="shot" data-reveal>
+                    <img src="screenshots/facility-hazard.jpg" width="1600" height="900" loading="lazy"
+                         alt="A hazard-striped room inside the facility, with a hammer equipped and the message Room cleared - doors unlocked.">
+                    <figcaption>Break all four spawners and the room releases its door lock.</figcaption>
+                </figure>
+                <figure class="shot" data-reveal>
+                    <img src="screenshots/facility-interior.jpg" width="1600" height="900" loading="lazy"
+                         alt="A white-panelled facility corridor with a green circuit block and a view through an open doorway.">
+                    <figcaption>Clean panel walls, circuit blocks, and doors that open as you approach.</figcaption>
+                </figure>
+                <figure class="shot" data-reveal>
+                    <img src="screenshots/title.jpg" width="1600" height="900" loading="lazy"
+                         alt="The Crafted Resistance title screen with the facility visible behind the menu.">
+                    <figcaption>Drop preparation starts before the facility loads.</figcaption>
+                </figure>
+            </div>
         </div>
     </section>
 
@@ -171,45 +208,49 @@
     <section class="section section--alt" id="pillars">
         <div class="container">
             <header class="sec-head sec-head--center">
-                <p class="kicker" data-reveal>Core pillars</p>
-                <h2 class="sec-title" data-reveal>The Foundations of Survival</h2>
+                <p class="kicker" data-reveal>The loop</p>
+                <h2 class="sec-title" data-reveal>Drop. Clear. Descend.</h2>
+                <p class="sec-sub" data-reveal>
+                    Every floor is a lockdown puzzle wrapped around a fight. Clear the rooms, break
+                    the guardian, take the elevator, and do it again with better gear.
+                </p>
             </header>
 
             <div class="grid grid--3">
                 <article class="card" data-reveal>
                     <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></span>
-                    <h3>Explore</h3>
-                    <p>Discover diverse environments, hidden resources, and unique terrain while expanding your knowledge of the world.</p>
+                    <h3>Drop in</h3>
+                    <p>Start outside the facility with a hammer, a scanner, and limited supplies. The only way is in.</p>
                 </article>
 
                 <article class="card" data-reveal>
-                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-pick"></use></svg></span>
-                    <h3>Gather</h3>
-                    <p>Collect materials, harvest resources, and secure supplies needed to survive and progress.</p>
-                </article>
-
-                <article class="card" data-reveal>
-                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-anvil"></use></svg></span>
-                    <h3>Craft</h3>
-                    <p>Transform raw materials into tools, equipment, and structures that help you thrive.</p>
-                </article>
-
-                <article class="card" data-reveal>
-                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-brick"></use></svg></span>
-                    <h3>Build</h3>
-                    <p>Design and construct anything from simple shelters to massive fortified bases.</p>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+                    <h3>Clear the rooms</h3>
+                    <p>Break all four spawners in a room to stop its bots and unlock the doors. Every room has its own material theme and secret.</p>
                 </article>
 
                 <article class="card" data-reveal>
                     <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
-                    <h3>Survive</h3>
-                    <p>Manage resources, prepare for danger, and adapt to increasingly difficult conditions.</p>
+                    <h3>Fight guardians</h3>
+                    <p>Each floor ends with a guardian using its own kit: poison lobs, missiles, shockwaves, landmines, lifesteal, and reinforcements.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-anvil"></use></svg></span>
+                    <h3>Craft and upgrade</h3>
+                    <p>Use the 2x2 inventory grid and the 3x3 advanced table. Build doors, lights, chests and ladders; upgrade armour and weapons.</p>
+                </article>
+
+                <article class="card" data-reveal>
+                    <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-brick"></use></svg></span>
+                    <h3>Fortify and explore</h3>
+                    <p>Mine the block world outside, place what you need, and scan for vaults, shield cores, chests and loot hidden in the walls.</p>
                 </article>
 
                 <article class="card" data-reveal>
                     <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
-                    <h3>Expand</h3>
-                    <p>Grow your settlement, improve your infrastructure, and push further into the unknown.</p>
+                    <h3>Ride the elevator</h3>
+                    <p>Floor guardians drop keycards. Spend one at the elevator to open the next floor. The final 600 HP guardian waits on the terrace above the Core.</p>
                 </article>
             </div>
         </div>
@@ -220,35 +261,36 @@
         <div class="container">
             <header class="sec-head sec-head--center">
                 <p class="kicker" data-reveal>Progression</p>
-                <h2 class="sec-title" data-reveal>Grow From Survivor to Master Builder</h2>
+                <h2 class="sec-title" data-reveal>From the Ground Floor to the Core</h2>
                 <p class="sec-sub" data-reveal>
-                    Progress through better tools, stronger materials, larger structures, and more
-                    advanced crafting options. Each milestone unlocks new opportunities and challenges.
+                    Progress is the facility itself. Each guardian keycard opens another elevator
+                    level, another set of rooms, and another chance to find the gear that makes the
+                    next floor survivable.
                 </p>
             </header>
 
             <div class="rail" data-reveal aria-hidden="true">
-                <span class="rail__end">Survivor</span>
+                <span class="rail__end">Ground floor</span>
                 <span class="rail__line"><i></i></span>
-                <span class="rail__end rail__end--target">Master Builder</span>
+                <span class="rail__end rail__end--target">The Core</span>
             </div>
 
             <div class="grid grid--4">
                 <article class="pillar-sm" data-reveal>
                     <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-pick"></use></svg></span>
-                    <h3>Better tools</h3>
+                    <h3>Clear spawners</h3>
                 </article>
                 <article class="pillar-sm" data-reveal>
-                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-anvil"></use></svg></span>
-                    <h3>Stronger materials</h3>
-                </article>
-                <article class="pillar-sm" data-reveal>
-                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-brick"></use></svg></span>
-                    <h3>Larger structures</h3>
+                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+                    <h3>Defeat the guardian</h3>
                 </article>
                 <article class="pillar-sm" data-reveal>
                     <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-expand"></use></svg></span>
-                    <h3>Advanced crafting</h3>
+                    <h3>Unlock the next floor</h3>
+                </article>
+                <article class="pillar-sm" data-reveal>
+                    <span class="pillar-sm__icon"><svg class="icon" aria-hidden="true"><use href="#i-anvil"></use></svg></span>
+                    <h3>Upgrade your kit</h3>
                 </article>
             </div>
         </div>
@@ -263,13 +305,16 @@
             </header>
 
             <article class="status" data-reveal>
-                <h3>Current Development Status</h3>
+                <h3>Current build — Round 44</h3>
                 <ul class="bullets">
-                    <li>Official website launched.</li>
-                    <li>Core gameplay systems under development.</li>
-                    <li>World generation improvements planned.</li>
-                    <li>Building and crafting features in progress.</li>
-                    <li>Additional content and mechanics coming soon.</li>
+                    <li>100 rooms across 10 floors, built from 20×20 room shells and connected by a working elevator.</li>
+                    <li>14 room themes: storage, dormitory, maintenance, cafeteria, security, research, medical, server, decontamination, cryo, nanite, antimatter, shield containment and the Core.</li>
+                    <li>Floor guardians with per-floor abilities, plus a 600 HP final guardian on the terrace.</li>
+                    <li>Spawner-driven door locks: clear a room to open its doors, kill the guardian and spend its keycard to open the next floor.</li>
+                    <li>Crafting tables, guardian-dropped modular armour, weapon upgrades, chests, ladders, sliding doors and a scanner.</li>
+                    <li>A friendly companion bot, ambient Explore and Battle music, saved worlds and Android touch controls.</li>
+                    <li>Round 44: the city beyond the shield. A blue dome closes off a skyline of residences, offices and skyscrapers, and the terrace guardian gates the view.</li>
+                    <li>845 automated tests, including the new city, dome, future-save round trip and the Round 43 drop-preparation loading screen.</li>
                 </ul>
             </article>
         </div>
@@ -279,41 +324,43 @@
     <section class="section" id="roadmap">
         <div class="container">
             <header class="sec-head sec-head--center">
-                <p class="kicker" data-reveal>What's next</p>
-                <h2 class="sec-title" data-reveal>Roadmap</h2>
+                <p class="kicker" data-reveal>Build status</p>
+                <h2 class="sec-title" data-reveal>What is in the facility today</h2>
             </header>
 
             <div class="grid grid--3">
                 <article class="lane" data-reveal>
                     <header class="lane__head">
+                        <span class="chip chip--active">Playable now</span>
+                    </header>
+                    <ul>
+                        <li>100-room, 10-floor facility run</li>
+                        <li>Guardians, final boss and elevator progression</li>
+                        <li>Crafting, armour, weapons and chests</li>
+                        <li>Domed city skyline, 3-chunk view distance and ambient music</li>
+                        <li>World saves, Android touch controls and a desktop launcher</li>
+                    </ul>
+                </article>
+
+                <article class="lane" data-reveal>
+                    <header class="lane__head">
                         <span class="chip chip--next">Next</span>
                     </header>
                     <ul>
-                        <li>Expanded building features</li>
-                        <li>Improved world generation</li>
-                        <li>New resources and crafting recipes</li>
+                        <li>Polish and balance the current run</li>
+                        <li>More room-level detail and secrets</li>
+                        <li>Performance work on low-end and software renderers</li>
                     </ul>
                 </article>
 
                 <article class="lane" data-reveal>
                     <header class="lane__head">
-                        <span class="chip chip--active">In progress</span>
+                        <span class="chip">Not yet</span>
                     </header>
                     <ul>
-                        <li>Survival systems</li>
-                        <li>Exploration mechanics</li>
-                        <li>Structure improvements</li>
-                    </ul>
-                </article>
-
-                <article class="lane" data-reveal>
-                    <header class="lane__head">
-                        <span class="chip">Planned</span>
-                    </header>
-                    <ul>
-                        <li>Additional biomes</li>
-                        <li>Multiplayer support</li>
-                        <li>Advanced progression systems</li>
+                        <li>Multiplayer</li>
+                        <li>iOS build</li>
+                        <li>Console releases</li>
                     </ul>
                 </article>
             </div>
@@ -327,11 +374,11 @@
                 <div class="cta__glow" aria-hidden="true"></div>
                 <div class="cta__content">
                     <p class="kicker">Community</p>
-                    <h2>Join the Journey</h2>
+                    <h2>Join the resistance</h2>
                     <p>
-                        Crafted Resistance is being shaped through development, experimentation, and
-                        community feedback. Follow progress, suggest ideas, and be among the first
-                        players to experience future builds.
+                        The facility is still being tuned. Follow the dev log for new rooms, bosses
+                        and balance changes, then report bugs and share ideas with the people playing
+                        the current build.
                     </p>
                     <div class="cta__actions">
                         <a class="btn btn--primary" href="craftedresistance://play" data-link="play">
@@ -360,19 +407,27 @@
             <div class="faq" data-faq>
                 <details class="faq__item" data-reveal>
                     <summary>What is Crafted Resistance?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Crafted Resistance is a survival crafting game focused on exploration, gathering resources, building structures, and gradually expanding your capabilities.</p></div>
+                    <div class="faq__answer"><p>A first-person voxel survival game set in a ten-floor sci-fi containment facility. You mine, craft, fight bots and guardians, clear rooms, and ride the elevator from the ground floor to the Core.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Is the game finished?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>No. The game is currently under active development and new features are being added regularly.</p></div>
+                    <div class="faq__answer"><p>No. It is an active beta with a complete 100-room facility run, but balance, content and polish are still being added.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
-                    <summary>Will multiplayer be available?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Multiplayer is planned for future development updates.</p></div>
+                    <summary>How do I unlock the next floor?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Break the four spawners in a room to unlock its doors. Clear the floor's guardian, take its keycard to the elevator and spend it to open the next level. The final guardian waits on the terrace after room 100.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>What platforms are supported?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Windows, macOS, Linux and Android. Android uses the APK and on-screen touch controls; iOS is not supported yet.</p></div>
+                </details>
+                <details class="faq__item" data-reveal>
+                    <summary>Is there multiplayer?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
+                    <div class="faq__answer"><p>Not in the current build. It is a single-player game with multiple local world saves.</p></div>
                 </details>
                 <details class="faq__item" data-reveal>
                     <summary>Can I provide feedback?<svg class="icon faq__chev" aria-hidden="true"><use href="#i-chevron"></use></svg></summary>
-                    <div class="faq__answer"><p>Yes. Community feedback plays an important role in shaping future updates.</p></div>
+                    <div class="faq__answer"><p>Yes. Join the Discord and report bugs, balance issues or ideas for the facility.</p></div>
                 </details>
             </div>
         </div>
@@ -381,10 +436,10 @@
     <!-- ============ closing CTA ============ -->
     <section class="section closing" id="start">
         <div class="container container--narrow closing__inner" data-reveal>
-            <h2 class="closing__title">The Adventure Is Just Beginning</h2>
+            <h2 class="closing__title">Your drop is waiting.</h2>
             <p>
-                Crafted Resistance is currently under active development. Follow progress, stay
-                updated on new features, and be ready when the next build arrives.
+                The current beta has 100 rooms, ten floor guardians and a full elevator run to the
+                Core. Download the latest build, or join the Discord and help shape the next floor.
             </p>
             <div class="closing__actions">
                 <a class="btn btn--primary btn--lg" href="craftedresistance://play" data-link="play">
@@ -413,17 +468,17 @@
                 <img class="brand__logo" src="logo-96.png" width="34" height="34" alt="" aria-hidden="true">
                 <span class="brand__text">Crafted<em>Resistance</em></span>
             </a>
-            <p>Survive. Build. Resist. Crafted Resistance is an evolving survival crafting experience focused on exploration, creativity, and progression.</p>
+            <p>Survive. Build. Resist. A first-person voxel survival game in a ten-floor containment facility, from the ground floor to the Core.</p>
         </div>
 
         <nav class="footer__col" aria-label="Game">
             <h2>Game</h2>
             <ul>
-                <li><a href="#world">The world</a></li>
-                <li><a href="#pillars">Core pillars</a></li>
+                <li><a href="#world">The facility</a></li>
+                <li><a href="#pillars">Gameplay loop</a></li>
                 <li><a href="#progression">Progression</a></li>
-                <li><a href="#updates">Development updates</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#updates">Dev log</a></li>
+                <li><a href="#roadmap">Build status</a></li>
                 <li><a href="craftedresistance://play" data-link="play">Play now</a></li>
                 <li><a href="downloads.html">Downloads</a></li>
             </ul>
@@ -433,7 +488,7 @@
             <h2>Community</h2>
             <ul>
                 <li><a href="https://discord.gg/Ker5hu4NG" data-link="discord">Discord</a></li>
-                <li><a href="#feedback" data-link="feedback">Send feedback</a></li>
+                <li><a href="#community" data-link="feedback">Send feedback</a></li>
             </ul>
         </nav>
 
@@ -442,7 +497,7 @@
             <ul>
                 <li><a href="privacy.html">Privacy</a></li>
                 <li><a href="terms.html">Terms</a></li>
-                <li><a href="#press" data-link="press">Press kit</a></li>
+                <li><a href="#community" data-link="press">Press kit</a></li>
             </ul>
         </nav>
     </div>

@@ -408,7 +408,7 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     position: absolute;
     inset: -6%;
     z-index: -2;
-    background: url("screenshot.png") center 38% / cover no-repeat;
+    background: url("screenshots/facility-hazard.jpg") center 38% / cover no-repeat;
     filter: saturate(.85) contrast(1.05) blur(2px);
     animation: drift 26s ease-in-out infinite alternate;
 }
@@ -650,7 +650,7 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
 
 .frame__shot {
     position: relative;
-    aspect-ratio: 1535 / 707;
+    aspect-ratio: 16 / 9;
     background: #0d0f14;
 }
 
@@ -665,6 +665,38 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     font-size: .88rem;
     color: var(--muted);
     border-top: 1px solid var(--line);
+}
+
+/* Screenshot gallery */
+.shot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.shot {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.shot img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform .45s ease;
+}
+
+.shot:hover img { transform: scale(1.025); }
+
+.shot figcaption {
+    padding: .85rem 1rem 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: .86rem;
 }
 
 .sec-head--center {
@@ -1837,6 +1869,8 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     .grid--3,
     .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
+    .shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
     .grid--2,
     .dl-platforms { grid-template-columns: minmax(0, 1fr); }
 
@@ -1889,6 +1923,7 @@ body.nav-open .nav__toggle span:nth-child(3) { transform: translateY(-7px) rotat
     .grid--3,
     .grid--4,
     .grid--2,
+    .shot-grid,
     .dl-platforms { grid-template-columns: minmax(0, 1fr); }
 
     .hero { min-height: auto; padding-bottom: 4.5rem; }
